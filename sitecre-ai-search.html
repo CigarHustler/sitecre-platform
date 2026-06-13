@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SITE CRE — AI Property Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0B0D0C;
+  --stone:#151817;
+  --dark:#1A1E1C;
+  --slate:#2E3330;
+  --mid:#4A5250;
+  --mist:#7A8885;
+  --cloud:#B8C0BE;
+  --fog:#D8DEDD;
+  --paper:#F0F2F1;
+  --white:#FAFBFA;
+  --gold:#C4A05A;
+  --gold-d:#A8883E;
+  --gold-glow:rgba(196,160,90,0.15);
+  --green:#1E3D32;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--ink);color:var(--white);-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:rgba(11,13,12,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;font-weight:500;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-size:12px;letter-spacing:0.08em;color:var(--cloud);text-decoration:none;transition:color 0.15s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 20px;text-decoration:none;font-weight:500;}
+
+/* ── HERO SEARCH ── */
+.search-hero{
+  min-height:100vh;padding-top:64px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding-left:48px;padding-right:48px;
+}
+.search-hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(30,61,50,0.4) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 30% at 20% 80%, rgba(196,160,90,0.05) 0%, transparent 60%);
+  pointer-events:none;
+}
+.search-hero-inner{position:relative;z-index:1;width:100%;max-width:860px;text-align:center;}
+
+.ai-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(196,160,90,0.3);
+  padding:7px 16px;margin-bottom:32px;
+  background:rgba(196,160,90,0.05);
+}
+.ai-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+
+.search-title{
+  font-family:var(--serif);font-size:clamp(42px,6vw,80px);
+  font-weight:300;line-height:1.06;letter-spacing:-0.015em;
+  color:var(--white);margin-bottom:16px;
+}
+.search-title em{font-style:italic;color:var(--gold);}
+.search-sub{
+  font-size:16px;color:var(--mist);margin-bottom:48px;
+  font-weight:300;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto;
+}
+
+/* ── AI INPUT BOX ── */
+.ai-input-wrap{
+  position:relative;width:100%;margin-bottom:20px;
+}
+.ai-input-box{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--white);font-family:var(--sans);font-size:16px;font-weight:300;
+  padding:22px 130px 22px 24px;
+  outline:none;transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+  resize:none;min-height:72px;line-height:1.5;
+}
+.ai-input-box:focus{
+  border-color:rgba(196,160,90,0.5);
+  background:rgba(255,255,255,0.06);
+  box-shadow:0 0 0 3px rgba(196,160,90,0.08);
+}
+.ai-input-box::placeholder{color:var(--mid);}
+.ai-send-btn{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:var(--gold);color:var(--ink);border:none;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  padding:12px 22px;font-weight:500;transition:background 0.15s;white-space:nowrap;
+}
+.ai-send-btn:hover{background:var(--gold-d);}
+.ai-send-btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+/* ── EXAMPLE PROMPTS ── */
+.example-prompts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px;}
+.prompt-chip{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  color:var(--mist);border:1px solid rgba(255,255,255,0.08);
+  padding:8px 14px;cursor:pointer;transition:all 0.15s;background:transparent;
+  text-align:left;
+}
+.prompt-chip:hover{color:var(--gold);border-color:rgba(196,160,90,0.3);background:rgba(196,160,90,0.05);}
+
+/* ── AI THINKING STATE ── */
+.ai-status{
+  display:none;align-items:center;gap:10px;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
+  color:var(--mist);margin-bottom:24px;
+}
+.ai-status.visible{display:flex;}
+.thinking-dots span{
+  display:inline-block;width:4px;height:4px;border-radius:50%;
+  background:var(--gold);margin:0 2px;
+  animation:bounce 1.2s infinite;
+}
+.thinking-dots span:nth-child(2){animation-delay:0.2s;}
+.thinking-dots span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}
+
+/* ── PARSED RESULT CARD ── */
+.parsed-card{
+  display:none;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:24px 28px;margin-bottom:24px;text-align:left;
+}
+.parsed-card.visible{display:block;}
+.parsed-title{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+}
+.parsed-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.parsed-tag{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;
+  color:var(--white);background:rgba(196,160,90,0.1);
+  border:1px solid rgba(196,160,90,0.25);padding:5px 12px;
+}
+.parsed-tag span{color:var(--mist);margin-right:4px;}
+
+/* ── CREXI LAUNCH BUTTON ── */
+.launch-wrap{display:none;text-align:center;}
+.launch-wrap.visible{display:block;}
+.launch-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--gold);color:var(--ink);
+  font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  padding:18px 40px;text-decoration:none;font-weight:500;
+  transition:background 0.15s;border:none;cursor:pointer;
+  margin-bottom:12px;
+}
+.launch-btn:hover{background:var(--gold-d);}
+.launch-btn svg{width:16px;height:16px;}
+.launch-note{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  color:var(--mid);
+}
+
+/* ── HOW IT WORKS ── */
+.how-section{
+  padding:96px 48px;max-width:1100px;margin:0 auto;
+}
+.section-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;
+}
+.section-title{
+  font-family:var(--serif);font-size:clamp(32px,3.5vw,50px);
+  font-weight:300;line-height:1.1;color:var(--white);margin-bottom:48px;
+}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.04);}
+.step{background:var(--ink);padding:36px 32px;}
+.step-num{
+  font-family:var(--serif);font-size:48px;font-weight:300;
+  color:rgba(196,160,90,0.2);line-height:1;margin-bottom:16px;
+  letter-spacing:-0.02em;
+}
+.step h3{
+  font-family:var(--serif);font-size:22px;font-weight:400;
+  color:var(--white);margin-bottom:10px;
+}
+.step p{font-size:13px;color:var(--mist);line-height:1.7;}
+
+/* ── SEARCH LOG / HISTORY ── */
+.history-section{
+  padding:0 48px 96px;max-width:1100px;margin:0 auto;
+  display:none;
+}
+.history-section.visible{display:block;}
+.history-title{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--mist);margin-bottom:16px;
+}
+.history-list{display:flex;flex-direction:column;gap:2px;}
+.history-item{
+  background:var(--stone);padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  cursor:pointer;transition:background 0.15s;
+}
+.history-item:hover{background:var(--slate);}
+.history-query{font-size:13px;color:var(--cloud);}
+.history-meta{font-family:var(--mono);font-size:10px;color:var(--mid);white-space:nowrap;}
+.history-rerun{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--gold);background:none;border:none;
+  cursor:pointer;white-space:nowrap;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--stone);padding:32px 48px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;
+}
+footer p{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--mid);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .search-hero{padding:80px 20px 48px;}
+  .ai-input-box{padding:18px 100px 18px 18px;font-size:15px;}
+  .ai-send-btn{padding:10px 16px;font-size:10px;}
+  .steps{grid-template-columns:1fr;}
+  .how-section,.history-section{padding:60px 20px;}
+  footer{flex-direction:column;gap:12px;padding:24px 20px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="sitecre-platform.html" class="nav-logo">SITE · CRE</a>
+  <div class="nav-links">
+    <a href="sitecre-platform.html">Home</a>
+    <a href="#" class="active">AI Search</a>
+    <a href="sitecre-platform.html#services">Services</a>
+    <a href="sitecre-platform.html#markets">Markets</a>
+    <a href="sitecre-platform.html#contact">Contact</a>
+  </div>
+  <a href="sitecre-platform.html#contact" class="nav-cta">Speak With an Advisor</a>
+</nav>
+
+<!-- HERO / SEARCH -->
+<section class="search-hero">
+  <div class="search-hero-bg"></div>
+  <div class="search-hero-inner">
+
+    <div class="ai-badge">
+      <span class="ai-badge-dot"></span>
+      AI-Powered · Florida CRE Search
+    </div>
+
+    <h1 class="search-title">Describe what<br>you're looking for.<br><em>We'll find it.</em></h1>
+    <p class="search-sub">Type your property requirements in plain English. Our AI interprets your criteria and surfaces matching listings from Crexi's live Florida commercial inventory.</p>
+
+    <div class="ai-input-wrap">
+      <textarea
+        class="ai-input-box"
+        id="aiInput"
+        placeholder="e.g. Industrial warehouse in Tampa, 50,000 SF minimum, for sale under $15M with dock-high doors…"
+        rows="2"
+        onkeydown="handleKey(event)"
+      ></textarea>
+      <button class="ai-send-btn" id="sendBtn" onclick="runSearch()">Search →</button>
+    </div>
+
+    <div class="example-prompts">
+      <button class="prompt-chip" onclick="fillPrompt(this)">NNN retail strip center in Orlando, cap rate 6%+</button>
+      <button class="prompt-chip" onclick="fillPrompt(this)">Class A industrial Miami-Dade, 100k SF+, for sale</button>
+      <button class="prompt-chip" onclick="fillPrompt(this)">Office building Tampa Bay under $20M, value-add</button>
+      <button class="prompt-chip" onclick="fillPrompt(this)">Medical office building for sale, South Florida</button>
+      <button class="prompt-chip" onclick="fillPrompt(this)">Mixed-use development site Jacksonville, 5+ acres</button>
+      <button class="prompt-chip" onclick="fillPrompt(this)">Flex industrial for lease, Orlando, 10,000–30,000 SF</button>
+    </div>
+
+    <!-- AI status -->
+    <div class="ai-status" id="aiStatus">
+      <div class="thinking-dots"><span></span><span></span><span></span></div>
+      <span id="statusText">Analyzing your requirements…</span>
+    </div>
+
+    <!-- Parsed criteria display -->
+    <div class="parsed-card" id="parsedCard">
+      <div class="parsed-title">Criteria Identified</div>
+      <div class="parsed-grid" id="parsedGrid"></div>
+    </div>
+
+    <!-- Launch button -->
+    <div class="launch-wrap" id="launchWrap">
+      <a id="crexiLink" href="#" target="_blank" class="launch-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Matching Listings on Crexi
+      </a>
+      <p class="launch-note">Opens Crexi.com filtered to your exact criteria — live, real-time Florida inventory</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEARCH HISTORY -->
+<div class="history-section" id="historySection">
+  <div style="max-width:860px;margin:0 auto;">
+    <div class="history-title">Recent Searches</div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <span class="section-eyebrow">How It Works</span>
+  <h2 class="section-title">From plain English<br>to live listings in seconds.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Describe your requirements</h3>
+      <p>Type what you're looking for the way you'd say it to a broker — asset type, market, size, price, deal structure, any special criteria.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>AI parses and maps your criteria</h3>
+      <p>Our AI identifies asset type, geography, size range, price range, cap rate targets, deal type, and any special conditions — then maps them to Crexi's search filters.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Live Crexi inventory, filtered for you</h3>
+      <p>You're taken directly to a filtered Crexi results page showing matching Florida CRE listings — live, updated in real time, with full deal details.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 SITE Commercial Real Estate · sitecre.com · (561) 598-8838</p>
+  <p>Powered by SITE CRE AI · Florida-focused</p>
+</footer>
+
+<script>
+// ── SEARCH HISTORY ──────────────────────────────────────────────────
+let searchHistory = [];
+
+// ── EXAMPLE PROMPT FILL ─────────────────────────────────────────────
+function fillPrompt(btn) {
+  document.getElementById('aiInput').value = btn.textContent;
+  document.getElementById('aiInput').focus();
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    runSearch();
+  }
+}
+
+// ── CREXI URL BUILDER ────────────────────────────────────────────────
+// Maps parsed criteria → Crexi URL parameters
+const CREXI_BASE = 'https://www.crexi.com/properties';
+
+const PROPERTY_TYPE_MAP = {
+  'industrial': 'Industrial',
+  'warehouse': 'Industrial',
+  'flex': 'Industrial',
+  'office': 'Office',
+  'retail': 'Retail',
+  'strip': 'Retail',
+  'shopping': 'Retail',
+  'mixed-use': 'Multi-Family',
+  'mixed use': 'Multi-Family',
+  'multifamily': 'Multi-Family',
+  'multi-family': 'Multi-Family',
+  'medical': 'Office',
+  'mob': 'Office',
+  'land': 'Land',
+  'development': 'Land',
+  'site': 'Land',
+  'hospitality': 'Hospitality',
+  'hotel': 'Hospitality',
+  'motel': 'Hospitality',
+  'self storage': 'Self-Storage',
+  'storage': 'Self-Storage',
+};
+
+const MARKET_MAP = {
+  'miami': { city: 'Miami', state: 'FL' },
+  'miami-dade': { city: 'Miami', state: 'FL' },
+  'south florida': { state: 'FL' },
+  'brickell': { city: 'Miami', state: 'FL' },
+  'doral': { city: 'Doral', state: 'FL' },
+  'medley': { city: 'Miami', state: 'FL' },
+  'fort lauderdale': { city: 'Fort+Lauderdale', state: 'FL' },
+  'palm beach': { city: 'West+Palm+Beach', state: 'FL' },
+  'west palm': { city: 'West+Palm+Beach', state: 'FL' },
+  'tampa': { city: 'Tampa', state: 'FL' },
+  'tampa bay': { city: 'Tampa', state: 'FL' },
+  'st pete': { city: 'St.+Petersburg', state: 'FL' },
+  'clearwater': { city: 'Clearwater', state: 'FL' },
+  'orlando': { city: 'Orlando', state: 'FL' },
+  'central florida': { city: 'Orlando', state: 'FL' },
+  'jacksonville': { city: 'Jacksonville', state: 'FL' },
+  'northeast florida': { state: 'FL' },
+  'southwest florida': { state: 'FL' },
+  'fort myers': { city: 'Fort+Myers', state: 'FL' },
+  'naples': { city: 'Naples', state: 'FL' },
+  'sarasota': { city: 'Sarasota', state: 'FL' },
+  'gainesville': { city: 'Gainesville', state: 'FL' },
+  'tallahassee': { city: 'Tallahassee', state: 'FL' },
+  'space coast': { city: 'Melbourne', state: 'FL' },
+  'florida': { state: 'FL' },
+};
+
+function parseDollarAmount(text) {
+  // Match patterns like $15M, $1.5M, $500K, $2,000,000
+  const patterns = [
+    { re: /\$(\d+(?:\.\d+)?)\s*b(?:illion)?/i, mult: 1e9 },
+    { re: /\$(\d+(?:\.\d+)?)\s*m(?:illion)?/i, mult: 1e6 },
+    { re: /\$(\d+(?:\.\d+)?)\s*k/i, mult: 1e3 },
+    { re: /\$(\d[\d,]*)/i, mult: 1 },
+  ];
+  for (const { re, mult } of patterns) {
+    const m = text.match(re);
+    if (m) return Math.round(parseFloat(m[1].replace(/,/g, '')) * mult);
+  }
+  return null;
+}
+
+function parseSF(text) {
+  const m = text.match(/(\d[\d,]*(?:\.\d+)?)\s*(?:k\s*)?(?:sf|sq\s*ft|square\s*feet)/i);
+  if (!m) return null;
+  let val = parseFloat(m[1].replace(/,/g, ''));
+  if (/\d+k\s*sf/i.test(text)) val *= 1000;
+  return Math.round(val);
+}
+
+function parseCapRate(text) {
+  const m = text.match(/(\d+(?:\.\d+)?)\s*%?\s*(?:cap\s*rate|cap)/i) ||
+            text.match(/cap\s*rate\s*(?:of\s*)?(\d+(?:\.\d+)?)/i);
+  return m ? parseFloat(m[1]) : null;
+}
+
+function parseCriteria(query) {
+  const q = query.toLowerCase();
+  const result = {
+    propertyType: null,
+    city: null,
+    state: 'FL', // always FL for SITE CRE
+    minPrice: null,
+    maxPrice: null,
+    minSF: null,
+    maxSF: null,
+    minCapRate: null,
+    dealType: null, // sale / lease
+    tags: [], // for display
+  };
+
+  // Property type
+  for (const [keyword, crexiType] of Object.entries(PROPERTY_TYPE_MAP)) {
+    if (q.includes(keyword)) {
+      result.propertyType = crexiType;
+      result.tags.push({ label: 'Type', value: keyword.replace(/^\w/, c => c.toUpperCase()) });
+      break;
+    }
+  }
+
+  // Market / city
+  for (const [keyword, loc] of Object.entries(MARKET_MAP)) {
+    if (q.includes(keyword)) {
+      if (loc.city) result.city = loc.city;
+      result.tags.push({ label: 'Market', value: keyword.replace(/\b\w/g, c => c.toUpperCase()) });
+      break;
+    }
+  }
+
+  // Deal type
+  if (/\bfor\s+lease\b|\bfor\s+rent\b|\blease\b|\bleasing\b/i.test(query)) {
+    result.dealType = 'lease';
+    result.tags.push({ label: 'Deal', value: 'For Lease' });
+  } else if (/\bfor\s+sale\b|\bsale\b|\bpurchase\b|\bbuy\b/i.test(query)) {
+    result.dealType = 'sale';
+    result.tags.push({ label: 'Deal', value: 'For Sale' });
+  }
+
+  // Price — "under $15M", "below $10M", "up to $20M" → maxPrice
+  const underMatch = query.match(/(?:under|below|up\s*to|less\s*than|max\s*(?:price)?(?:\s*of)?)\s*(\$[\d.,]+\s*[MmKkBb]?)/i);
+  if (underMatch) {
+    result.maxPrice = parseDollarAmount(underMatch[1]);
+    result.tags.push({ label: 'Max Price', value: formatMoney(result.maxPrice) });
+  }
+
+  // Price — "over $5M", "above $3M", "minimum $2M" → minPrice
+  const overMatch = query.match(/(?:over|above|at\s*least|minimum|min\s*(?:price)?(?:\s*of)?)\s*(\$[\d.,]+\s*[MmKkBb]?)/i);
+  if (overMatch) {
+    result.minPrice = parseDollarAmount(overMatch[1]);
+    result.tags.push({ label: 'Min Price', value: formatMoney(result.minPrice) });
+  }
+
+  // SF — "100k SF minimum", "50,000 SF+", "minimum 30,000 SF"
+  const minSFMatch = query.match(/(?:(\d[\d,]*(?:\.\d+)?)\s*(?:k\s*)?(?:sf|sq\s*ft|square\s*feet)[\s\+]*(?:minimum|min|plus|\+)?|minimum\s+(\d[\d,]*(?:\.\d+)?)\s*(?:k\s*)?(?:sf|sq\s*ft|square\s*feet))/i);
+  if (minSFMatch) {
+    let raw = (minSFMatch[1] || minSFMatch[2]).replace(/,/g, '');
+    let val = parseFloat(raw);
+    if (/\d+k\s*(sf|sq)/i.test(query)) val *= 1000;
+    if (query.toLowerCase().includes('minimum') || query.includes('+')) result.minSF = Math.round(val);
+    else result.minSF = Math.round(val * 0.8); // rough lower bound
+    result.maxSF = Math.round(val * 1.5);
+    result.tags.push({ label: 'Size', value: `${Math.round(result.minSF).toLocaleString()}+ SF` });
+  }
+
+  // SF range "10,000–30,000 SF"
+  const sfRangeMatch = query.match(/(\d[\d,]*)\s*(?:–|-|to)\s*(\d[\d,]*)\s*(?:SF|sq\s*ft|square\s*feet)/i);
+  if (sfRangeMatch) {
+    result.minSF = parseInt(sfRangeMatch[1].replace(/,/g, ''));
+    result.maxSF = parseInt(sfRangeMatch[2].replace(/,/g, ''));
+    result.tags.push({ label: 'Size', value: `${result.minSF.toLocaleString()}–${result.maxSF.toLocaleString()} SF` });
+  }
+
+  // Cap rate
+  const capMatch = parseCapRate(query);
+  if (capMatch) {
+    result.minCapRate = capMatch;
+    result.tags.push({ label: 'Cap Rate', value: `${capMatch}%+` });
+  }
+
+  // Special keywords → tags only (informational)
+  if (/nnn|triple\s*net/i.test(query)) result.tags.push({ label: 'Lease Type', value: 'NNN' });
+  if (/value[\s-]add/i.test(query)) result.tags.push({ label: 'Strategy', value: 'Value-Add' });
+  if (/class\s*a/i.test(query)) result.tags.push({ label: 'Class', value: 'Class A' });
+  if (/dock[\s-]high/i.test(query)) result.tags.push({ label: 'Feature', value: 'Dock-High' });
+  if (/off[\s-]market/i.test(query)) result.tags.push({ label: 'Note', value: 'Off-Market' });
+  if (/ground\s*(?:up|floor)|develop/i.test(query)) result.tags.push({ label: 'Use', value: 'Development' });
+
+  // Always tag Florida
+  result.tags.push({ label: 'State', value: 'Florida' });
+
+  return result;
+}
+
+function buildCrexiURL(criteria) {
+  const params = new URLSearchParams();
+
+  // Crexi uses these parameter names:
+  if (criteria.state) params.set('stateCode', criteria.state);
+  if (criteria.city) params.set('city', criteria.city.replace(/\+/g, ' '));
+
+  if (criteria.propertyType) {
+    params.set('propertyType', criteria.propertyType);
+  }
+
+  if (criteria.dealType === 'lease') {
+    params.set('transactionType', 'lease');
+  } else {
+    params.set('transactionType', 'sale');
+  }
+
+  if (criteria.minPrice) params.set('minPrice', criteria.minPrice);
+  if (criteria.maxPrice) params.set('maxPrice', criteria.maxPrice);
+  if (criteria.minSF) params.set('minSqFt', criteria.minSF);
+  if (criteria.maxSF) params.set('maxSqFt', criteria.maxSF);
+  if (criteria.minCapRate) params.set('minCapRate', criteria.minCapRate);
+
+  return `${CREXI_BASE}?${params.toString()}`;
+}
+
+function formatMoney(n) {
+  if (!n) return '';
+  if (n >= 1e9) return `$${(n/1e9).toFixed(1)}B`;
+  if (n >= 1e6) return `$${(n/1e6).toFixed(1)}M`;
+  if (n >= 1e3) return `$${(n/1e3).toFixed(0)}K`;
+  return `$${n.toLocaleString()}`;
+}
+
+// ── MAIN SEARCH FLOW ─────────────────────────────────────────────────
+async function runSearch() {
+  const query = document.getElementById('aiInput').value.trim();
+  if (!query) return;
+
+  const sendBtn = document.getElementById('sendBtn');
+  const aiStatus = document.getElementById('aiStatus');
+  const statusText = document.getElementById('statusText');
+  const parsedCard = document.getElementById('parsedCard');
+  const parsedGrid = document.getElementById('parsedGrid');
+  const launchWrap = document.getElementById('launchWrap');
+  const crexiLink = document.getElementById('crexiLink');
+
+  // Reset state
+  parsedCard.classList.remove('visible');
+  launchWrap.classList.remove('visible');
+  sendBtn.disabled = true;
+
+  // Show thinking
+  aiStatus.classList.add('visible');
+  statusText.textContent = 'Analyzing your requirements…';
+
+  // Step 1 — call Claude API to interpret the query
+  let criteria;
+  try {
+    const aiResponse = await callClaudeAPI(query);
+    criteria = mergeWithLocalParse(aiResponse, query);
+    statusText.textContent = 'Mapping to Florida CRE filters…';
+    await delay(600);
+  } catch (e) {
+    // Fallback to local parse if API fails
+    criteria = parseCriteria(query);
+    statusText.textContent = 'Mapping to Florida CRE filters…';
+    await delay(600);
+  }
+
+  statusText.textContent = 'Building your Crexi search…';
+  await delay(500);
+
+  // Step 2 — build Crexi URL
+  const url = buildCrexiURL(criteria);
+  crexiLink.href = url;
+
+  // Step 3 — show parsed criteria
+  aiStatus.classList.remove('visible');
+
+  if (criteria.tags.length > 0) {
+    parsedGrid.innerHTML = criteria.tags.map(t =>
+      `<div class="parsed-tag"><span>${t.label}:</span>${t.value}</div>`
+    ).join('');
+    parsedCard.classList.add('visible');
+  }
+
+  launchWrap.classList.add('visible');
+  sendBtn.disabled = false;
+
+  // Save to history
+  addToHistory(query, criteria, url);
+}
+
+// ── CLAUDE API CALL ───────────────────────────────────────────────────
+async function callClaudeAPI(query) {
+  const systemPrompt = `You are a commercial real estate search parser for SITE Commercial Real Estate, a Florida-focused institutional CRE firm.
+
+Parse the user's natural language property search query and extract structured criteria. Return ONLY valid JSON with these fields (use null for anything not mentioned):
+
+{
+  "propertyType": "Industrial|Office|Retail|Multi-Family|Land|Hospitality|Self-Storage|null",
+  "city": "city name or null",
+  "dealType": "sale|lease|null",
+  "minPrice": number in dollars or null,
+  "maxPrice": number in dollars or null,
+  "minSF": number or null,
+  "maxSF": number or null,
+  "minCapRate": number (percentage, e.g. 6 for 6%) or null,
+  "tags": [{"label": "string", "value": "string"}]
+}
+
+Tags should capture ALL meaningful criteria as human-readable label/value pairs. Always include a "State: Florida" tag. Include tags for property type, market, deal type, size, price, cap rate, lease type (NNN, gross), class (A/B/C), strategy (value-add, core, etc.), and any special features mentioned.
+
+The search is always for Florida commercial real estate. Be precise with dollar amounts — convert "15M" to 15000000.`;
+
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      system: systemPrompt,
+      messages: [{ role: 'user', content: query }]
+    })
+  });
+
+  if (!response.ok) throw new Error('API error');
+  const data = await response.json();
+  const text = data.content[0].text.replace(/```json|```/g, '').trim();
+  return JSON.parse(text);
+}
+
+function mergeWithLocalParse(aiResult, query) {
+  // Start with AI result, fill any gaps with local parse
+  const local = parseCriteria(query);
+  return {
+    propertyType: aiResult.propertyType || local.propertyType,
+    city: aiResult.city || local.city,
+    state: 'FL',
+    dealType: aiResult.dealType || local.dealType,
+    minPrice: aiResult.minPrice || local.minPrice,
+    maxPrice: aiResult.maxPrice || local.maxPrice,
+    minSF: aiResult.minSF || local.minSF,
+    maxSF: aiResult.maxSF || local.maxSF,
+    minCapRate: aiResult.minCapRate || local.minCapRate,
+    tags: aiResult.tags && aiResult.tags.length > 0 ? aiResult.tags : local.tags,
+  };
+}
+
+// ── HISTORY ──────────────────────────────────────────────────────────
+function addToHistory(query, criteria, url) {
+  searchHistory.unshift({ query, url, time: new Date() });
+  if (searchHistory.length > 5) searchHistory.pop();
+  renderHistory();
+}
+
+function renderHistory() {
+  const section = document.getElementById('historySection');
+  const list = document.getElementById('historyList');
+  if (searchHistory.length === 0) return;
+  section.classList.add('visible');
+  list.innerHTML = searchHistory.map((item, i) => `
+    <div class="history-item">
+      <span class="history-query">${item.query}</span>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span class="history-meta">${timeAgo(item.time)}</span>
+        <a href="${item.url}" target="_blank" class="history-rerun">View on Crexi →</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function timeAgo(date) {
+  const s = Math.floor((Date.now() - date) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s/60)}m ago`;
+  return `${Math.floor(s/3600)}h ago`;
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>

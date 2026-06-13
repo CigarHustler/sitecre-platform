@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SITE CRE — Submit Your Requirements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0B0D0C;
+  --stone:#151817;
+  --dark:#1A1E1C;
+  --slate:#2E3330;
+  --mid:#4A5250;
+  --mist:#7A8885;
+  --cloud:#B8C0BE;
+  --paper:#F0F2F1;
+  --white:#FAFBFA;
+  --gold:#C4A05A;
+  --gold-d:#A8883E;
+  --green:#1E3D32;
+  --green-l:#2B5445;
+  --red:#8B3A3A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--ink);color:var(--white);-webkit-font-smoothing:antialiased;min-height:100vh;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:rgba(11,13,12,0.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);text-decoration:none;font-weight:500;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:12px;letter-spacing:0.08em;color:var(--cloud);text-decoration:none;transition:color 0.15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 20px;text-decoration:none;font-weight:500;}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  padding-top:64px;background:var(--ink);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.page-header-inner{
+  max-width:1100px;margin:0 auto;
+  padding:64px 48px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;
+}
+.header-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.header-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);}
+.page-title{
+  font-family:var(--serif);font-size:clamp(38px,4.5vw,62px);
+  font-weight:300;line-height:1.06;letter-spacing:-0.015em;color:var(--white);
+}
+.page-title em{font-style:italic;color:var(--gold);}
+.header-right{padding-bottom:4px;}
+.header-desc{font-size:15px;color:var(--mist);line-height:1.75;margin-bottom:28px;font-weight:300;}
+.header-points{list-style:none;}
+.header-points li{
+  font-size:13px;color:var(--cloud);padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;gap:10px;
+}
+.header-points li::before{content:'—';color:var(--gold);font-family:var(--mono);}
+
+/* ── PROGRESS BAR ── */
+.progress-bar{
+  background:var(--stone);border-bottom:1px solid rgba(255,255,255,0.06);
+  position:sticky;top:64px;z-index:90;
+}
+.progress-inner{
+  max-width:1100px;margin:0 auto;padding:0 48px;
+  display:flex;align-items:stretch;
+}
+.progress-step{
+  flex:1;padding:16px 0;display:flex;align-items:center;gap:10px;
+  border-bottom:2px solid transparent;cursor:pointer;
+  transition:border-color 0.2s;position:relative;
+}
+.progress-step.active{border-bottom-color:var(--gold);}
+.progress-step.done{border-bottom-color:var(--green-l);}
+.step-num{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.06);color:var(--mist);
+  transition:all 0.2s;flex-shrink:0;
+}
+.progress-step.active .step-num{background:var(--gold);color:var(--ink);}
+.progress-step.done .step-num{background:var(--green-l);color:var(--white);}
+.progress-step.done .step-num::after{content:'✓';}
+.progress-step.done .step-num-inner{display:none;}
+.step-label{font-size:12px;color:var(--mist);transition:color 0.2s;white-space:nowrap;}
+.progress-step.active .step-label{color:var(--white);}
+.progress-divider{width:1px;background:rgba(255,255,255,0.06);margin:12px 0;}
+
+/* ── FORM LAYOUT ── */
+.form-wrap{max-width:1100px;margin:0 auto;padding:56px 48px 96px;}
+.form-section{display:none;}
+.form-section.active{display:block;}
+
+.section-heading{margin-bottom:36px;}
+.section-heading h2{
+  font-family:var(--serif);font-size:32px;font-weight:300;
+  color:var(--white);margin-bottom:8px;line-height:1.15;
+}
+.section-heading p{font-size:14px;color:var(--mist);line-height:1.7;}
+
+/* ── FIELD GROUPS ── */
+.field-grid{display:grid;gap:2px;margin-bottom:2px;}
+.field-grid-2{grid-template-columns:1fr 1fr;}
+.field-grid-3{grid-template-columns:1fr 1fr 1fr;}
+.field-grid-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.field-group{margin-bottom:2px;}
+
+label.field-label{
+  display:block;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--mist);
+  padding:12px 16px 0;background:var(--stone);
+}
+label.field-label .req{color:var(--gold);}
+
+input.field,select.field,textarea.field{
+  display:block;width:100%;
+  background:var(--stone);border:none;outline:none;
+  color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;
+  padding:8px 16px 14px;transition:background 0.15s;
+  border-bottom:2px solid transparent;
+}
+input.field:focus,select.field:focus,textarea.field:focus{
+  background:var(--slate);border-bottom-color:var(--gold);
+}
+input.field::placeholder,textarea.field::placeholder{color:var(--mid);}
+input.field.error,select.field.error{border-bottom-color:var(--red);}
+
+select.field{
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237A8885'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  background-color:var(--stone);padding-right:36px;
+}
+select.field:focus{background-color:var(--slate);}
+select.field option{background:var(--stone);color:var(--white);}
+
+textarea.field{resize:vertical;min-height:90px;font-family:var(--sans);line-height:1.6;}
+
+.field-note{
+  font-size:11px;color:var(--mid);padding:6px 16px 10px;
+  background:var(--stone);line-height:1.5;
+}
+.error-msg{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  color:var(--red);padding:4px 16px 8px;background:var(--stone);display:none;
+}
+.error-msg.visible{display:block;}
+
+/* ── RANGE FIELDS ── */
+.range-wrap{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:2px;align-items:end;
+}
+.range-sep{
+  background:var(--stone);display:flex;align-items:center;
+  justify-content:center;padding:0 12px;padding-bottom:14px;
+  font-family:var(--mono);font-size:12px;color:var(--mid);
+  align-self:stretch;
+}
+
+/* ── CHECKBOX / RADIO GROUPS ── */
+.check-group{
+  display:grid;gap:2px;margin-bottom:2px;
+}
+.check-grid-2{grid-template-columns:1fr 1fr;}
+.check-grid-3{grid-template-columns:1fr 1fr 1fr;}
+.check-grid-4{grid-template-columns:repeat(4,1fr);}
+
+.check-label{
+  display:flex;align-items:center;gap:12px;
+  background:var(--stone);padding:14px 16px;cursor:pointer;
+  transition:background 0.15s;user-select:none;
+}
+.check-label:hover{background:var(--slate);}
+.check-label input{display:none;}
+.check-box{
+  width:18px;height:18px;border:1px solid rgba(255,255,255,0.15);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.check-label input:checked ~ .check-box{
+  background:var(--gold);border-color:var(--gold);
+}
+.check-label input:checked ~ .check-box::after{
+  content:'✓';font-size:11px;color:var(--ink);font-weight:600;
+}
+.check-text{font-size:13px;color:var(--cloud);}
+.check-sub{font-size:11px;color:var(--mist);display:block;margin-top:2px;}
+
+.radio-label{
+  display:flex;align-items:center;gap:12px;
+  background:var(--stone);padding:14px 16px;cursor:pointer;
+  transition:background 0.15s;user-select:none;
+}
+.radio-label:hover{background:var(--slate);}
+.radio-label input{display:none;}
+.radio-dot{
+  width:18px;height:18px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.15);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.radio-label input:checked ~ .radio-dot{border-color:var(--gold);}
+.radio-label input:checked ~ .radio-dot::after{
+  content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);
+}
+.radio-label input:checked ~ .check-text{color:var(--white);}
+
+/* ── SECTION DIVIDER ── */
+.field-section-title{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);
+  padding:28px 0 12px;display:flex;align-items:center;gap:12px;
+}
+.field-section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+/* ── NAVIGATION BUTTONS ── */
+.form-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:40px;padding-top:32px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.btn-back{
+  background:transparent;color:var(--mist);border:1px solid rgba(255,255,255,0.1);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  padding:13px 28px;cursor:pointer;transition:all 0.15s;
+}
+.btn-back:hover{color:var(--cloud);border-color:rgba(255,255,255,0.2);}
+.btn-next{
+  background:var(--gold);color:var(--ink);border:none;cursor:pointer;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  padding:14px 36px;font-weight:500;transition:background 0.15s;
+}
+.btn-next:hover{background:var(--gold-d);}
+.btn-submit{
+  background:var(--green-l);color:var(--white);border:none;cursor:pointer;
+  font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  padding:16px 48px;font-weight:500;transition:background 0.15s;
+}
+.btn-submit:hover{background:#3a6b58;}
+.nav-progress{font-family:var(--mono);font-size:11px;color:var(--mid);}
+
+/* ── REVIEW PANEL ── */
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px;}
+.review-block{background:var(--stone);padding:24px;}
+.review-block-title{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:14px;
+}
+.review-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.review-row:last-child{border-bottom:none;}
+.review-key{font-size:12px;color:var(--mist);}
+.review-val{font-size:13px;color:var(--white);text-align:right;font-weight:400;}
+.review-val.empty{color:var(--mid);font-style:italic;font-size:12px;}
+
+/* ── SUCCESS STATE ── */
+.success-screen{
+  display:none;text-align:center;padding:96px 48px;
+}
+.success-screen.visible{display:block;}
+.success-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:rgba(43,84,69,0.3);border:1px solid var(--green-l);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 32px;
+}
+.success-icon svg{width:28px;height:28px;stroke:var(--green-l);stroke-width:2;fill:none;}
+.success-title{
+  font-family:var(--serif);font-size:clamp(36px,4vw,52px);
+  font-weight:300;color:var(--white);margin-bottom:16px;
+}
+.success-sub{font-size:15px;color:var(--mist);max-width:480px;margin:0 auto 48px;line-height:1.75;}
+.success-ref{
+  font-family:var(--mono);font-size:12px;letter-spacing:0.16em;
+  color:var(--gold);background:rgba(196,160,90,0.08);
+  border:1px solid rgba(196,160,90,0.2);
+  display:inline-block;padding:12px 24px;margin-bottom:40px;
+}
+.success-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-home{
+  background:transparent;color:var(--cloud);
+  border:1px solid rgba(255,255,255,0.15);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
+  text-transform:uppercase;padding:13px 28px;text-decoration:none;
+}
+.btn-search{
+  background:var(--gold);color:var(--ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
+  text-transform:uppercase;padding:14px 28px;text-decoration:none;font-weight:500;
+}
+
+/* ── TOOLTIP ── */
+.tooltip-wrap{position:relative;display:inline-block;margin-left:6px;}
+.tooltip-icon{
+  width:14px;height:14px;border-radius:50%;border:1px solid var(--mid);
+  font-size:9px;color:var(--mid);display:inline-flex;align-items:center;
+  justify-content:center;cursor:help;font-family:var(--mono);
+}
+.tooltip-box{
+  display:none;position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%);
+  background:var(--slate);color:var(--cloud);font-size:12px;
+  padding:10px 14px;width:220px;z-index:10;line-height:1.5;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.tooltip-wrap:hover .tooltip-box{display:block;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--stone);padding:28px 48px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;
+}
+footer p{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--mid);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .page-header-inner{grid-template-columns:1fr;gap:32px;padding:48px 20px 32px;}
+  .progress-inner{padding:0 20px;overflow-x:auto;}
+  .step-label{display:none;}
+  .form-wrap{padding:40px 20px 80px;}
+  .field-grid-2,.field-grid-3,.field-grid-4{grid-template-columns:1fr;}
+  .check-grid-2,.check-grid-3,.check-grid-4{grid-template-columns:1fr 1fr;}
+  .range-wrap{grid-template-columns:1fr;gap:2px;}
+  .range-sep{display:none;}
+  .review-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:10px;padding:20px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="sitecre-platform.html" class="nav-logo">SITE · CRE</a>
+  <div class="nav-links">
+    <a href="sitecre-platform.html">Home</a>
+    <a href="sitecre-ai-search.html">AI Search</a>
+    <a href="sitecre-platform.html#services">Services</a>
+    <a href="sitecre-platform.html#markets">Markets</a>
+    <a href="#" class="active">Submit Requirements</a>
+  </div>
+  <a href="tel:5615988838" class="nav-cta">(561) 598-8838</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div>
+      <div class="header-eyebrow">Acquisition &amp; Leasing Requirements</div>
+      <h1 class="page-title">Tell us exactly<br>what you need.<br><em>We'll find it.</em></h1>
+    </div>
+    <div class="header-right">
+      <p class="header-desc">Submit your commercial property requirements and a senior SITE CRE advisor will match you with on-market and off-market opportunities across Florida within one business day.</p>
+      <ul class="header-points">
+        <li>Investment, acquisition, and leasing requirements</li>
+        <li>Access to off-market and discreetly marketed assets</li>
+        <li>Senior advisor response within one business day</li>
+        <li>All submissions handled with full discretion</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-bar">
+  <div class="progress-inner">
+    <div class="progress-step active" id="ps1" onclick="goToStep(1)">
+      <div class="step-num"><span class="step-num-inner">1</span></div>
+      <span class="step-label">Your Role</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-step" id="ps2" onclick="goToStep(2)">
+      <div class="step-num"><span class="step-num-inner">2</span></div>
+      <span class="step-label">Property Criteria</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-step" id="ps3" onclick="goToStep(3)">
+      <div class="step-num"><span class="step-num-inner">3</span></div>
+      <span class="step-label">Financial Parameters</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-step" id="ps4" onclick="goToStep(4)">
+      <div class="step-num"><span class="step-num-inner">4</span></div>
+      <span class="step-label">Timeline &amp; Context</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-step" id="ps5" onclick="goToStep(5)">
+      <div class="step-num"><span class="step-num-inner">5</span></div>
+      <span class="step-label">Your Information</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-step" id="ps6" onclick="goToStep(6)">
+      <div class="step-num"><span class="step-num-inner">6</span></div>
+      <span class="step-label">Review &amp; Submit</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap" id="formWrap">
+
+  <!-- ══ STEP 1: ROLE ══ -->
+  <div class="form-section active" id="step1">
+    <div class="section-heading">
+      <h2>What best describes your situation?</h2>
+      <p>This helps us assign the right advisor and match you with the most relevant opportunities.</p>
+    </div>
+
+    <div class="field-section-title">I am looking to…</div>
+    <div class="check-group check-grid-2" style="margin-bottom:24px;">
+      <label class="radio-label">
+        <input type="radio" name="clientRole" value="buyer" onchange="updateRole()"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Purchase / Acquire a Property<span class="check-sub">Investment or owner-user acquisition</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="clientRole" value="tenant" onchange="updateRole()"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Lease Space for My Business<span class="check-sub">Office, industrial, retail, or medical</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="clientRole" value="investor" onchange="updateRole()"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Invest in Commercial Real Estate<span class="check-sub">Income-producing assets, portfolio growth</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="clientRole" value="developer" onchange="updateRole()"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Find a Development Site<span class="check-sub">Land, redevelopment, or ground-up project</span></div>
+      </label>
+    </div>
+
+    <div class="field-section-title">Client type</div>
+    <div class="check-group check-grid-3">
+      <label class="radio-label">
+        <input type="radio" name="clientType" value="individual"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Individual / Private<span class="check-sub">Personal or family investment</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="clientType" value="company"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Company / Corporation<span class="check-sub">Operating business or entity</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="clientType" value="institutional"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Institutional / Fund<span class="check-sub">REIT, PE, family office, fund</span></div>
+      </label>
+    </div>
+
+    <div class="form-nav">
+      <span class="nav-progress">Step 1 of 6</span>
+      <button class="btn-next" onclick="nextStep(1)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 2: PROPERTY CRITERIA ══ -->
+  <div class="form-section" id="step2">
+    <div class="section-heading">
+      <h2>Property requirements.</h2>
+      <p>Define the asset types, markets, and physical specifications you're looking for.</p>
+    </div>
+
+    <div class="field-section-title">Asset type <span style="color:var(--mid);font-size:9px;">(select all that apply)</span></div>
+    <div class="check-group check-grid-4" style="margin-bottom:24px;">
+      <label class="check-label"><input type="checkbox" name="assetType" value="Industrial"/><div class="check-box"></div><div class="check-text">Industrial<span class="check-sub">Warehouse, distribution, flex</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Office"/><div class="check-box"></div><div class="check-text">Office<span class="check-sub">Class A, B, suburban, CBD</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Retail"/><div class="check-box"></div><div class="check-text">Retail<span class="check-sub">Strip, anchored, NNN, freestanding</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Mixed-Use"/><div class="check-box"></div><div class="check-text">Mixed-Use<span class="check-sub">Retail + office/residential</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Medical"/><div class="check-box"></div><div class="check-text">Medical / MOB<span class="check-sub">Medical office buildings</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Multifamily"/><div class="check-box"></div><div class="check-text">Multifamily<span class="check-sub">Apartments, workforce, luxury</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Hospitality"/><div class="check-box"></div><div class="check-text">Hospitality<span class="check-sub">Hotel, motel, resort</span></div></label>
+      <label class="check-label"><input type="checkbox" name="assetType" value="Land"/><div class="check-box"></div><div class="check-text">Land / Site<span class="check-sub">Development, redevelopment</span></div></label>
+    </div>
+
+    <div class="field-section-title">Target Florida markets <span style="color:var(--mid);font-size:9px;">(select all that apply)</span></div>
+    <div class="check-group check-grid-3" style="margin-bottom:24px;">
+      <label class="check-label"><input type="checkbox" name="market" value="Miami"/><div class="check-box"></div><div class="check-text">Miami / South Florida</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Fort Lauderdale"/><div class="check-box"></div><div class="check-text">Fort Lauderdale / Broward</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Palm Beach"/><div class="check-box"></div><div class="check-text">Palm Beach County</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Tampa Bay"/><div class="check-box"></div><div class="check-text">Tampa Bay</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Orlando"/><div class="check-box"></div><div class="check-text">Orlando / Central Florida</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Jacksonville"/><div class="check-box"></div><div class="check-text">Jacksonville</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Southwest FL"/><div class="check-box"></div><div class="check-text">Southwest FL (Naples / Fort Myers)</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Space Coast"/><div class="check-box"></div><div class="check-text">Space Coast / Brevard</div></label>
+      <label class="check-label"><input type="checkbox" name="market" value="Statewide"/><div class="check-box"></div><div class="check-text">Statewide / Open to All Markets</div></label>
+    </div>
+
+    <div class="field-section-title">Specific submarket or location notes</div>
+    <div class="field-group" style="margin-bottom:24px;">
+      <label class="field-label">Preferred submarket, corridor, or address area (optional)</label>
+      <input type="text" class="field" id="submarket" placeholder="e.g. Westshore, Doral, I-4 Corridor, Brickell…"/>
+    </div>
+
+    <div class="field-section-title">Size requirements</div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">Minimum square footage</label>
+        <input type="number" class="field" id="minSF" placeholder="e.g. 10,000"/>
+      </div>
+      <div>
+        <label class="field-label">Maximum square footage</label>
+        <input type="number" class="field" id="maxSF" placeholder="e.g. 50,000"/>
+      </div>
+    </div>
+
+    <div id="acreageRow" style="display:none;">
+      <div class="field-section-title">Acreage (for land / development sites)</div>
+      <div class="field-grid field-grid-2">
+        <div>
+          <label class="field-label">Minimum acres</label>
+          <input type="number" class="field" id="minAcres" placeholder="e.g. 2"/>
+        </div>
+        <div>
+          <label class="field-label">Maximum acres</label>
+          <input type="number" class="field" id="maxAcres" placeholder="e.g. 20"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-section-title" style="margin-top:24px;">Property class <span style="color:var(--mid);font-size:9px;">(select all that apply)</span></div>
+    <div class="check-group check-grid-4">
+      <label class="check-label"><input type="checkbox" name="propClass" value="A"/><div class="check-box"></div><div class="check-text">Class A</div></label>
+      <label class="check-label"><input type="checkbox" name="propClass" value="B"/><div class="check-box"></div><div class="check-text">Class B</div></label>
+      <label class="check-label"><input type="checkbox" name="propClass" value="C"/><div class="check-box"></div><div class="check-text">Class C</div></label>
+      <label class="check-label"><input type="checkbox" name="propClass" value="Any"/><div class="check-box"></div><div class="check-text">Open / Any</div></label>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(2)">← Back</button>
+      <span class="nav-progress">Step 2 of 6</span>
+      <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 3: FINANCIAL PARAMETERS ══ -->
+  <div class="form-section" id="step3">
+    <div class="section-heading">
+      <h2>Financial parameters.</h2>
+      <p>Your budget, return targets, and deal structure preferences.</p>
+    </div>
+
+    <div class="field-section-title">Transaction type</div>
+    <div class="check-group check-grid-3" style="margin-bottom:24px;" id="txTypeGroup">
+      <label class="radio-label" id="txSale">
+        <input type="radio" name="txType" value="Purchase / Acquisition"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Purchase / Acquisition<span class="check-sub">Fee simple ownership</span></div>
+      </label>
+      <label class="radio-label" id="txLease">
+        <input type="radio" name="txType" value="Lease"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Lease<span class="check-sub">Direct lease or sublease</span></div>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="txType" value="Either / Open"/>
+        <div class="radio-dot"></div>
+        <div class="check-text">Open to Either<span class="check-sub">Will evaluate both</span></div>
+      </label>
+    </div>
+
+    <!-- PURCHASE fields -->
+    <div id="purchaseFields">
+      <div class="field-section-title">Purchase price range</div>
+      <div class="field-grid field-grid-2" style="margin-bottom:24px;">
+        <div>
+          <label class="field-label">Minimum price</label>
+          <input type="text" class="field" id="minPrice" placeholder="e.g. $5,000,000"/>
+        </div>
+        <div>
+          <label class="field-label">Maximum price <span class="req">*</span></label>
+          <input type="text" class="field" id="maxPrice" placeholder="e.g. $25,000,000"/>
+        </div>
+      </div>
+
+      <div class="field-section-title">Return targets</div>
+      <div class="field-grid field-grid-3" style="margin-bottom:24px;">
+        <div>
+          <label class="field-label">Minimum cap rate
+            <span class="tooltip-wrap"><span class="tooltip-icon">?</span><span class="tooltip-box">Cap rate = NOI ÷ Purchase Price. Higher cap = more yield but typically more risk.</span></span>
+          </label>
+          <input type="text" class="field" id="minCapRate" placeholder="e.g. 5.5%"/>
+        </div>
+        <div>
+          <label class="field-label">Target IRR (if applicable)</label>
+          <input type="text" class="field" id="targetIRR" placeholder="e.g. 12%"/>
+        </div>
+        <div>
+          <label class="field-label">Target cash-on-cash</label>
+          <input type="text" class="field" id="targetCOC" placeholder="e.g. 7%"/>
+        </div>
+      </div>
+
+      <div class="field-section-title">Investment strategy</div>
+      <div class="check-group check-grid-4" style="margin-bottom:24px;">
+        <label class="check-label"><input type="checkbox" name="strategy" value="Core"/><div class="check-box"></div><div class="check-text">Core<span class="check-sub">Stable, low-risk</span></div></label>
+        <label class="check-label"><input type="checkbox" name="strategy" value="Core-Plus"/><div class="check-box"></div><div class="check-text">Core-Plus<span class="check-sub">Modest upside</span></div></label>
+        <label class="check-label"><input type="checkbox" name="strategy" value="Value-Add"/><div class="check-box"></div><div class="check-text">Value-Add<span class="check-sub">Lease-up / reposition</span></div></label>
+        <label class="check-label"><input type="checkbox" name="strategy" value="Opportunistic"/><div class="check-box"></div><div class="check-text">Opportunistic<span class="check-sub">Higher risk / return</span></div></label>
+      </div>
+
+      <div class="field-section-title">Equity available</div>
+      <div class="field-grid field-grid-2" style="margin-bottom:24px;">
+        <div>
+          <label class="field-label">Equity / cash available</label>
+          <input type="text" class="field" id="equityAvail" placeholder="e.g. $5,000,000"/>
+        </div>
+        <div>
+          <label class="field-label">Preferred leverage</label>
+          <select class="field" id="leverage">
+            <option value="">Select leverage preference</option>
+            <option>All cash / no financing</option>
+            <option>Low leverage (under 50% LTV)</option>
+            <option>Moderate (50–65% LTV)</option>
+            <option>Standard (65–75% LTV)</option>
+            <option>High leverage (75%+ LTV)</option>
+            <option>Open / flexible</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEASE fields -->
+    <div id="leaseFields" style="display:none;">
+      <div class="field-section-title">Lease budget</div>
+      <div class="field-grid field-grid-2" style="margin-bottom:24px;">
+        <div>
+          <label class="field-label">Max rent per SF (annual)</label>
+          <input type="text" class="field" id="maxRentPSF" placeholder="e.g. $18 PSF NNN"/>
+        </div>
+        <div>
+          <label class="field-label">Max total annual rent</label>
+          <input type="text" class="field" id="maxTotalRent" placeholder="e.g. $500,000/yr"/>
+        </div>
+      </div>
+
+      <div class="field-section-title">Lease structure preference</div>
+      <div class="check-group check-grid-3" style="margin-bottom:24px;">
+        <label class="check-label"><input type="checkbox" name="leaseType" value="NNN"/><div class="check-box"></div><div class="check-text">NNN<span class="check-sub">Tenant pays taxes, ins, maint</span></div></label>
+        <label class="check-label"><input type="checkbox" name="leaseType" value="Modified Gross"/><div class="check-box"></div><div class="check-text">Modified Gross<span class="check-sub">Shared operating costs</span></div></label>
+        <label class="check-label"><input type="checkbox" name="leaseType" value="Full Service Gross"/><div class="check-box"></div><div class="check-text">Full Service Gross<span class="check-sub">All-in rent</span></div></label>
+      </div>
+
+      <div class="field-section-title">Lease term</div>
+      <div class="field-grid field-grid-2" style="margin-bottom:24px;">
+        <div>
+          <label class="field-label">Minimum lease term</label>
+          <select class="field" id="minLeaseTerm">
+            <option value="">Select minimum</option>
+            <option>Month-to-month</option>
+            <option>1 year</option>
+            <option>2–3 years</option>
+            <option>3–5 years</option>
+            <option>5+ years</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Preferred lease term</label>
+          <select class="field" id="prefLeaseTerm">
+            <option value="">Select preferred</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>5–7 years</option>
+            <option>7–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(3)">← Back</button>
+      <span class="nav-progress">Step 3 of 6</span>
+      <button class="btn-next" onclick="nextStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 4: TIMELINE & CONTEXT ══ -->
+  <div class="form-section" id="step4">
+    <div class="section-heading">
+      <h2>Timeline &amp; additional context.</h2>
+      <p>Help us understand your urgency, any special requirements, and background on this search.</p>
+    </div>
+
+    <div class="field-section-title">Timeline to transact</div>
+    <div class="check-group check-grid-4" style="margin-bottom:24px;">
+      <label class="radio-label"><input type="radio" name="timeline" value="ASAP (0–60 days)"/><div class="radio-dot"></div><div class="check-text">ASAP<span class="check-sub">0–60 days</span></div></label>
+      <label class="radio-label"><input type="radio" name="timeline" value="Near-term (3–6 months)"/><div class="radio-dot"></div><div class="check-text">Near-Term<span class="check-sub">3–6 months</span></div></label>
+      <label class="radio-label"><input type="radio" name="timeline" value="Mid-term (6–12 months)"/><div class="radio-dot"></div><div class="check-text">Mid-Term<span class="check-sub">6–12 months</span></div></label>
+      <label class="radio-label"><input type="radio" name="timeline" value="Exploratory (12+ months)"/><div class="radio-dot"></div><div class="check-text">Exploratory<span class="check-sub">12+ months, no rush</span></div></label>
+    </div>
+
+    <div class="field-section-title">Special property requirements <span style="color:var(--mid);font-size:9px;">(select all that apply)</span></div>
+    <div class="check-group check-grid-3" style="margin-bottom:24px;">
+      <label class="check-label"><input type="checkbox" name="special" value="Off-market only"/><div class="check-box"></div><div class="check-text">Off-market / discreet only</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Existing tenants required"/><div class="check-box"></div><div class="check-text">Must have existing tenants</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Vacant preferred"/><div class="check-box"></div><div class="check-text">Vacant / owner-user preferred</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="1031 Exchange"/><div class="check-box"></div><div class="check-text">1031 Exchange
+        <span class="tooltip-wrap"><span class="tooltip-icon">?</span><span class="tooltip-box">Tax-deferred exchange — timeline and identification deadlines apply.</span></span>
+      </div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Opportunity Zone"/><div class="check-box"></div><div class="check-text">Opportunity Zone preferred</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Long WALT required"/><div class="check-box"></div><div class="check-text">Long WALT required (7+ years)</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Sale-leaseback"/><div class="check-box"></div><div class="check-text">Sale-leaseback considered</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Portfolio preferred"/><div class="check-box"></div><div class="check-text">Portfolio / multi-asset preferred</div></label>
+      <label class="check-label"><input type="checkbox" name="special" value="Ground lease OK"/><div class="check-box"></div><div class="check-text">Ground lease acceptable</div></label>
+    </div>
+
+    <div class="field-section-title">Prior experience &amp; background</div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">Prior CRE investment / leasing experience</label>
+        <select class="field" id="experience">
+          <option value="">Select experience level</option>
+          <option>First-time buyer / tenant</option>
+          <option>1–3 prior transactions</option>
+          <option>4–10 prior transactions</option>
+          <option>10+ transactions / active investor</option>
+          <option>Institutional / professional</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label">How did you hear about SITE CRE?</label>
+        <select class="field" id="referralSource">
+          <option value="">Select source</option>
+          <option>Referral from colleague or advisor</option>
+          <option>Google / online search</option>
+          <option>LinkedIn</option>
+          <option>Industry event or conference</option>
+          <option>Crexi or LoopNet</option>
+          <option>Existing SITE CRE client</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-group" style="margin-top:2px;margin-bottom:2px;">
+      <label class="field-label">Additional context, must-haves, or deal-breakers (optional)</label>
+      <textarea class="field" id="additionalContext" placeholder="Any specific features, constraints, tenant requirements, zoning needs, or other context that would help us find the right match…" style="min-height:110px;"></textarea>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(4)">← Back</button>
+      <span class="nav-progress">Step 4 of 6</span>
+      <button class="btn-next" onclick="nextStep(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 5: CONTACT INFO ══ -->
+  <div class="form-section" id="step5">
+    <div class="section-heading">
+      <h2>Your information.</h2>
+      <p>A senior SITE CRE advisor will review your requirements and respond within one business day. All submissions are handled with complete discretion.</p>
+    </div>
+
+    <div class="field-section-title">Personal information</div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">First name <span class="req">*</span></label>
+        <input type="text" class="field" id="firstName" placeholder="First name"/>
+      </div>
+      <div>
+        <label class="field-label">Last name <span class="req">*</span></label>
+        <input type="text" class="field" id="lastName" placeholder="Last name"/>
+      </div>
+    </div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">Email address <span class="req">*</span></label>
+        <input type="email" class="field" id="email" placeholder="you@company.com"/>
+        <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+      </div>
+      <div>
+        <label class="field-label">Phone number <span class="req">*</span></label>
+        <input type="tel" class="field" id="phone" placeholder="(000) 000-0000"/>
+      </div>
+    </div>
+
+    <div class="field-section-title" style="margin-top:4px;">Company &amp; professional information</div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">Company / organization name</label>
+        <input type="text" class="field" id="company" placeholder="Company name (if applicable)"/>
+      </div>
+      <div>
+        <label class="field-label">Your title / role</label>
+        <input type="text" class="field" id="jobTitle" placeholder="e.g. CEO, CFO, Managing Partner…"/>
+      </div>
+    </div>
+    <div class="field-grid field-grid-2" style="margin-bottom:2px;">
+      <div>
+        <label class="field-label">State / location</label>
+        <select class="field" id="clientState">
+          <option value="">Select state</option>
+          <option>Florida</option>
+          <option>New York</option>
+          <option>California</option>
+          <option>Texas</option>
+          <option>Georgia</option>
+          <option>Illinois</option>
+          <option>Massachusetts</option>
+          <option>Other US State</option>
+          <option>International</option>
+        </select>
+      </div>
+      <div>
+        <label class="field-label">Best time to reach you</label>
+        <select class="field" id="bestTime">
+          <option value="">Select preferred time</option>
+          <option>Morning (8am–12pm ET)</option>
+          <option>Afternoon (12pm–5pm ET)</option>
+          <option>Evening (5pm–7pm ET)</option>
+          <option>Anytime</option>
+          <option>Email only — no calls</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-section-title" style="margin-top:4px;">Representation &amp; confidentiality</div>
+    <div class="check-group" style="margin-bottom:8px;">
+      <label class="check-label">
+        <input type="checkbox" id="currentlyRepresented"/>
+        <div class="check-box"></div>
+        <div class="check-text">I am currently represented by another broker for this requirement<span class="check-sub">Please note — SITE CRE may not be able to assist if you have an exclusive representation agreement in place.</span></div>
+      </label>
+      <label class="check-label">
+        <input type="checkbox" id="agreeDiscretion" required/>
+        <div class="check-box"></div>
+        <div class="check-text">I understand this submission is confidential and will only be shared with SITE CRE advisors <span class="req">*</span></div>
+      </label>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(5)">← Back</button>
+      <span class="nav-progress">Step 5 of 6</span>
+      <button class="btn-next" onclick="nextStep(5)">Review Submission →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 6: REVIEW ══ -->
+  <div class="form-section" id="step6">
+    <div class="section-heading">
+      <h2>Review your submission.</h2>
+      <p>Confirm your requirements before sending to a SITE CRE advisor. Use the back button to make changes.</p>
+    </div>
+
+    <div class="review-grid" id="reviewPanel">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="field-group" style="margin-top:2px;">
+      <label class="field-label">Final notes for the advisor (optional)</label>
+      <textarea class="field" id="finalNotes" placeholder="Anything else you'd like the advisor to know before they reach out…" style="min-height:80px;"></textarea>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn-back" onclick="prevStep(6)">← Back</button>
+      <span class="nav-progress">Step 6 of 6</span>
+      <button class="btn-submit" onclick="submitForm()">Submit to SITE CRE →</button>
+    </div>
+  </div>
+
+</div><!-- /form-wrap -->
+
+<!-- SUCCESS SCREEN -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+  </div>
+  <h2 class="success-title">Requirements received.</h2>
+  <p class="success-sub">A senior SITE CRE advisor will review your submission and respond within one business day. All inquiries are handled with full discretion.</p>
+  <div class="success-ref" id="refNumber"></div>
+  <p style="font-size:13px;color:var(--mist);margin-bottom:32px;">Questions in the meantime? Call us at <a href="tel:5615988838" style="color:var(--gold);">(561) 598-8838</a></p>
+  <div class="success-actions">
+    <a href="sitecre-platform.html" class="btn-home">← Back to Home</a>
+    <a href="sitecre-ai-search.html" class="btn-search">Search Live Listings →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 SITE Commercial Real Estate · sitecre.com · (561) 598-8838</p>
+  <p>All submissions confidential · Florida-focused institutional CRE</p>
+</footer>
+
+<script>
+let currentStep = 1;
+const totalSteps = 6;
+
+// ── STEP NAVIGATION ──────────────────────────────────────────────────
+function goToStep(n) {
+  if (n > currentStep) return; // only go back via progress bar
+  navigateTo(n);
+}
+
+function nextStep(from) {
+  if (!validateStep(from)) return;
+  if (from === 5) buildReview();
+  navigateTo(from + 1);
+}
+
+function prevStep(from) {
+  navigateTo(from - 1);
+}
+
+function navigateTo(n) {
+  document.getElementById(`step${currentStep}`).classList.remove('active');
+  document.getElementById(`ps${currentStep}`).classList.remove('active');
+  if (currentStep < n) document.getElementById(`ps${currentStep}`).classList.add('done');
+
+  currentStep = n;
+  document.getElementById(`step${currentStep}`).classList.add('active');
+  document.getElementById(`ps${currentStep}`).classList.add('active');
+  document.getElementById(`ps${currentStep}`).classList.remove('done');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── ROLE-BASED UI UPDATES ────────────────────────────────────────────
+function updateRole() {
+  const role = document.querySelector('input[name="clientRole"]:checked')?.value;
+  // Show acreage for developers/land
+  document.getElementById('acreageRow').style.display =
+    role === 'developer' ? 'block' : 'none';
+}
+
+// Watch transaction type to show/hide purchase vs lease fields
+document.addEventListener('change', function(e) {
+  if (e.target.name === 'txType') {
+    const val = e.target.value;
+    document.getElementById('purchaseFields').style.display =
+      val === 'Lease' ? 'none' : 'block';
+    document.getElementById('leaseFields').style.display =
+      val === 'Lease' ? 'block' : 'none';
+  }
+});
+
+// ── VALIDATION ───────────────────────────────────────────────────────
+function validateStep(step) {
+  if (step === 1) {
+    const role = document.querySelector('input[name="clientRole"]:checked');
+    if (!role) { alert('Please select your role to continue.'); return false; }
+    return true;
+  }
+  if (step === 2) {
+    const types = document.querySelectorAll('input[name="assetType"]:checked');
+    const markets = document.querySelectorAll('input[name="market"]:checked');
+    if (!types.length) { alert('Please select at least one asset type.'); return false; }
+    if (!markets.length) { alert('Please select at least one target market.'); return false; }
+    return true;
+  }
+  if (step === 5) {
+    const fn = document.getElementById('firstName').value.trim();
+    const ln = document.getElementById('lastName').value.trim();
+    const em = document.getElementById('email').value.trim();
+    const ph = document.getElementById('phone').value.trim();
+    const disc = document.getElementById('agreeDiscretion').checked;
+    if (!fn || !ln) { alert('Please enter your name.'); return false; }
+    if (!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+      document.getElementById('emailError').classList.add('visible');
+      document.getElementById('email').classList.add('error');
+      return false;
+    }
+    if (!ph) { alert('Please enter a phone number.'); return false; }
+    if (!disc) { alert('Please confirm the confidentiality acknowledgment.'); return false; }
+    return true;
+  }
+  return true;
+}
+
+// ── BUILD REVIEW PANEL ───────────────────────────────────────────────
+function buildReview() {
+  const role = document.querySelector('input[name="clientRole"]:checked')?.value || '—';
+  const clientType = document.querySelector('input[name="clientType"]:checked')?.value || '—';
+  const types = [...document.querySelectorAll('input[name="assetType"]:checked')].map(x=>x.value).join(', ') || '—';
+  const markets = [...document.querySelectorAll('input[name="market"]:checked')].map(x=>x.value).join(', ') || '—';
+  const minSF = document.getElementById('minSF').value;
+  const maxSF = document.getElementById('maxSF').value;
+  const sfRange = [minSF&&`${parseInt(minSF).toLocaleString()} SF`,maxSF&&`${parseInt(maxSF).toLocaleString()} SF`].filter(Boolean).join(' – ') || '—';
+  const classes = [...document.querySelectorAll('input[name="propClass"]:checked')].map(x=>x.value).join(', ') || '—';
+  const txType = document.querySelector('input[name="txType"]:checked')?.value || '—';
+  const minPrice = document.getElementById('minPrice').value || '—';
+  const maxPrice = document.getElementById('maxPrice').value || '—';
+  const capRate = document.getElementById('minCapRate').value || '—';
+  const strategies = [...document.querySelectorAll('input[name="strategy"]:checked')].map(x=>x.value).join(', ') || '—';
+  const maxRent = document.getElementById('maxRentPSF').value || '—';
+  const leasePref = document.getElementById('prefLeaseTerm').value || '—';
+  const timeline = document.querySelector('input[name="timeline"]:checked')?.value || '—';
+  const specials = [...document.querySelectorAll('input[name="special"]:checked')].map(x=>x.value).join(', ') || 'None';
+  const fn = document.getElementById('firstName').value;
+  const ln = document.getElementById('lastName').value;
+  const em = document.getElementById('email').value;
+  const ph = document.getElementById('phone').value;
+  const co = document.getElementById('company').value || '—';
+  const submarket = document.getElementById('submarket').value || '—';
+  const context = document.getElementById('additionalContext').value || '—';
+
+  document.getElementById('reviewPanel').innerHTML = `
+    <div class="review-block">
+      <div class="review-block-title">Role &amp; Profile</div>
+      <div class="review-row"><span class="review-key">Looking to</span><span class="review-val">${role.replace(/^\w/,c=>c.toUpperCase())}</span></div>
+      <div class="review-row"><span class="review-key">Client type</span><span class="review-val">${clientType.replace(/^\w/,c=>c.toUpperCase())}</span></div>
+      <div class="review-row"><span class="review-key">Transaction type</span><span class="review-val">${txType}</span></div>
+      <div class="review-row"><span class="review-key">Timeline</span><span class="review-val">${timeline}</span></div>
+    </div>
+    <div class="review-block">
+      <div class="review-block-title">Property Criteria</div>
+      <div class="review-row"><span class="review-key">Asset types</span><span class="review-val">${types}</span></div>
+      <div class="review-row"><span class="review-key">Target markets</span><span class="review-val">${markets}</span></div>
+      <div class="review-row"><span class="review-key">Submarket</span><span class="review-val ${submarket==='—'?'empty':''}">${submarket}</span></div>
+      <div class="review-row"><span class="review-key">Size range</span><span class="review-val">${sfRange}</span></div>
+      <div class="review-row"><span class="review-key">Property class</span><span class="review-val">${classes}</span></div>
+    </div>
+    <div class="review-block">
+      <div class="review-block-title">Financial Parameters</div>
+      <div class="review-row"><span class="review-key">Min price / Max price</span><span class="review-val">${minPrice} / ${maxPrice}</span></div>
+      <div class="review-row"><span class="review-key">Min cap rate</span><span class="review-val">${capRate}</span></div>
+      <div class="review-row"><span class="review-key">Strategy</span><span class="review-val">${strategies}</span></div>
+      <div class="review-row"><span class="review-key">Max rent PSF</span><span class="review-val ${maxRent==='—'?'empty':''}">${maxRent}</span></div>
+      <div class="review-row"><span class="review-key">Preferred lease term</span><span class="review-val ${leasePref==='—'?'empty':''}">${leasePref}</span></div>
+    </div>
+    <div class="review-block">
+      <div class="review-block-title">Special Requirements</div>
+      <div class="review-row"><span class="review-key">Special criteria</span><span class="review-val">${specials}</span></div>
+      <div class="review-row"><span class="review-key">Additional context</span><span class="review-val ${context==='—'?'empty':''}">${context.length>80?context.slice(0,80)+'…':context}</span></div>
+    </div>
+    <div class="review-block">
+      <div class="review-block-title">Your Information</div>
+      <div class="review-row"><span class="review-key">Name</span><span class="review-val">${fn} ${ln}</span></div>
+      <div class="review-row"><span class="review-key">Email</span><span class="review-val">${em}</span></div>
+      <div class="review-row"><span class="review-key">Phone</span><span class="review-val">${ph}</span></div>
+      <div class="review-row"><span class="review-key">Company</span><span class="review-val ${co==='—'?'empty':''}">${co}</span></div>
+    </div>
+    <div class="review-block" style="background:rgba(196,160,90,0.05);border:1px solid rgba(196,160,90,0.15);">
+      <div class="review-block-title">Advisor Note</div>
+      <p style="font-size:13px;color:var(--cloud);line-height:1.7;">A senior SITE CRE advisor will review your complete requirements and reach out within <strong>one business day</strong> with relevant on-market and off-market opportunities matching your criteria.</p>
+    </div>
+  `;
+}
+
+// ── SUBMIT ───────────────────────────────────────────────────────────
+function submitForm() {
+  // Generate a reference number
+  const ref = 'SITE-' + Date.now().toString(36).toUpperCase().slice(-6);
+
+  // In production: POST to your backend / email / CRM here
+  // For now: show success screen
+  document.getElementById('formWrap').style.display = 'none';
+  document.querySelector('.progress-bar').style.display = 'none';
+  document.getElementById('successScreen').classList.add('visible');
+  document.getElementById('refNumber').textContent = `Reference: ${ref}`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Clear email error on input
+document.getElementById('email')?.addEventListener('input', function() {
+  this.classList.remove('error');
+  document.getElementById('emailError').classList.remove('visible');
+});
+</script>
+</body>
+</html>
