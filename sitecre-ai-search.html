@@ -735,6 +735,17 @@ function timeAgo(date) {
 }
 
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// If a query was passed via ?q= (e.g. from the homepage search bar),
+// prefill the input and run the search automatically on load.
+document.addEventListener('DOMContentLoaded', function () {
+  const q = new URLSearchParams(window.location.search).get('q');
+  if (q && q.trim()) {
+    const input = document.getElementById('aiInput');
+    if (input) input.value = q.trim();
+    runSearch();
+  }
+});
 </script>
 </body>
 </html>

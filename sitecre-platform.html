@@ -635,7 +635,7 @@ footer{
 
   <div class="search-wrap">
     <div class="search-bar">
-      <input class="search-input" type="text" id="searchInput" placeholder="Search by address, asset name, market, or keyword…" oninput="filterListings()"/>
+      <input class="search-input" type="text" id="searchInput" placeholder="Search by address, asset name, market, or keyword…" oninput="filterListings()" onkeydown="if(event.key==='Enter'){event.preventDefault();goAiSearch();}"/>
       <div class="search-divider"></div>
       <select class="search-select" id="typeFilter" onchange="filterListings()">
         <option value="">All Asset Types</option>
@@ -663,7 +663,7 @@ footer{
         <option value="Off Market">Off Market</option>
         <option value="For Lease">For Lease</option>
       </select>
-      <button class="search-btn-main" onclick="filterListings()">Search</button>
+      <button class="search-btn-main" onclick="goAiSearch()">Search</button>
     </div>
 
     <div class="filter-chips">
@@ -932,6 +932,12 @@ footer{
 <div class="toast" id="toast">Inquiry submitted — an advisor will be in touch within one business day.</div>
 
 <script>
+// Send the main search query to the AI search page as a URL parameter.
+function goAiSearch(){
+  const q = document.getElementById('searchInput').value.trim();
+  window.location.href = 'sitecre-ai-search.html' + (q ? ('?q=' + encodeURIComponent(q)) : '');
+}
+
 const listings = [
   {
     id:1, name:"Medley Logistics Park", type:"Industrial", sub:"Class A · Last-Mile",
