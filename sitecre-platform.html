@@ -528,37 +528,21 @@
 
   // Crexi search
   function doSearch(){
-    let text = document.getElementById('searchInput').value.trim();
-    const types = [];
-    // Any property type explicitly chosen in the dropdown.
-    const dropdown = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : '';
-    if (dropdown) { types.push(dropdown); }
-    // Detect property-type keywords in the text (whole words only, so 'land'
-    // does not match inside 'Orlando'), pull them out, map to Crexi values.
-    const TYPE_PATTERNS = [
-      { re: /\bindustrial\b/i, value: 'Industrial' },
-      { re: /\boffice\b/i, value: 'Office' },
-      { re: /\bretail\b/i, value: 'Retail' },
-      { re: /\bmedical\b/i, value: 'Medical' },
-      { re: /\bland\b/i, value: 'Land' },
-      { re: /\bmixed[\s-]?use\b/i, value: 'Mixed Use' },
-      { re: /\bmultifamily\b/i, value: 'Multifamily' },
-      { re: /\bhospitality\b/i, value: 'Hospitality' }
-    ];
-    TYPE_PATTERNS.forEach(function(t){
-      if (t.re.test(text)) {
-        if (types.indexOf(t.value) === -1) { types.push(t.value); }
-        text = text.replace(t.re, ' ');
-      }
-    });
-    // What remains is the location/city.
-    let keywords = text.replace(/\s+/g, ' ').trim();
-    // If a location was entered without a state, scope it to Florida.
-    if (keywords && !/\b(fl|florida)\b/i.test(keywords)) { keywords += ', FL'; }
-    let url = 'https://www.crexi.com/properties?stateIds[]=FL';
-    types.forEach(function(ty){ url += '&propertyTypes[]=' + encodeURIComponent(ty); });
-    if (keywords) { url += '&keywords=' + encodeURIComponent(keywords); }
-    window.open(url, '_blank');
+    const q = document.getElementById('searchInput').value.trim();
+    const type = document.getElementById('typeFilter').value;
+    const typeMap = {
+      'Industrial':'Industrial','Office':'Office','Retail':'Retail',
+      'Medical':'Office','Land':'Land','Mixed-Use':'Mixed Use',
+      'Multifamily':'Multifamily','Hospitality':'Hospitality'
+    };
+    const crexiType = typeMap[type] || '';
+    let searchUrl = 'https://www.crexi.com/properties';
+    const params = [];
+    if(crexiType) params.push('propertyTypes[]=' + encodeURIComponent(crexiType));
+    params.push('stateIds[]=FL');
+    if(q) params.push('searchText=' + encodeURIComponent(q));
+    if(params.length) searchUrl += '?' + params.join('&');
+    window.open(searchUrl, '_blank');
   }
 
   // Prefill the requirements form intent from the Buy/Lease/Invest cards
