@@ -516,8 +516,9 @@
   function crexiSearch(e) {
     e.preventDefault();
     var q = document.getElementById('searchInput').value.trim();
-    var url = 'https://www.crexi.com/properties';
-    if (q) { url += '?' + new URLSearchParams({ q: q }).toString(); }
+    var params = new URLSearchParams({ searchType: 'Sales' });
+    if (q) { params.set('searchText', q); }
+    var url = 'https://www.crexi.com/search?' + params.toString();
     window.open(url, '_blank', 'noopener');
     return false;
   }
