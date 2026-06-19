@@ -251,16 +251,15 @@
       <form class="search-form" id="searchForm" onsubmit="doSearch(); return false;">
         <input type="text" id="searchInput" placeholder="City, market, or property type — e.g. Tampa industrial, Orlando retail…" />
         <select id="typeFilter" aria-label="Property type">
-          <option value="">All Property Types</option>
+          <option value="">All Types</option>
+          <option value="Industrial">Industrial</option>
           <option value="Office">Office</option>
           <option value="Retail">Retail</option>
-          <option value="Industrial">Industrial</option>
-          <option value="Multifamily">Multifamily</option>
+          <option value="Medical">Medical</option>
           <option value="Land">Land</option>
+          <option value="Mixed-Use">Mixed-Use</option>
+          <option value="Multifamily">Multifamily</option>
           <option value="Hospitality">Hospitality</option>
-          <option value="Mixed Use">Mixed Use</option>
-          <option value="Self Storage">Self Storage</option>
-          <option value="Special Purpose">Special Purpose</option>
         </select>
         <button type="submit" class="btn btn-primary">Search on Crexi →</button>
       </form>
