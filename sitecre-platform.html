@@ -249,7 +249,7 @@
     <div class="search-card">
       <h3>Search Florida's institutional-grade commercial assets</h3>
       <form class="search-form" id="searchForm" onsubmit="doSearch(); return false;">
-        <input type="text" id="searchInput" placeholder="City or market — e.g. Longwood FL, Tampa, Orlando…" />
+        <input type="text" id="searchInput" placeholder="City, market, or property type — e.g. Tampa industrial, Orlando retail…" />
         <select id="typeFilter" aria-label="Property type">
           <option value="">All Property Types</option>
           <option value="Office">Office</option>
@@ -528,12 +528,34 @@
 
   // Crexi search
   function doSearch(){
-    const q = document.getElementById('searchInput').value.trim();
-    const type = document.getElementById('typeFilter').value;
-    const url = 'https://www.crexi.com/properties?' + 
-      'stateIds[]=FL' +
-      (type ? '&propertyTypes[]=' + encodeURIComponent(type) : '') +
-      (q ? '&keywords=' + encodeURIComponent(q) : '');
+    let text = document.getElementById('searchInput').value.trim();
+    const types = [];
+    // Any property type explicitly chosen in the dropdown.
+    const dropdown = document.getElementById('typeFilter') ? document.getElementById('typeFilter').value : '';
+    if (dropdown) { types.push(dropdown); }
+    // Detect property-type keywords in the text (whole words only, so 'land'
+    // does not match inside 'Orlando'), pull them out, map to Crexi values.
+    const TYPE_PATTERNS = [
+      { re: /\bindustrial\b/i, value: 'Industrial' },
+      { re: /\boffice\b/i, value: 'Office' },
+      { re: /\bretail\b/i, value: 'Retail' },
+      { re: /\bmedical\b/i, value: 'Medical' },
+      { re: /\bland\b/i, value: 'Land' },
+      { re: /\bmixed[\s-]?use\b/i, value: 'Mixed Use' },
+      { re: /\bmultifamily\b/i, value: 'Multifamily' },
+      { re: /\bhospitality\b/i, value: 'Hospitality' }
+    ];
+    TYPE_PATTERNS.forEach(function(t){
+      if (t.re.test(text)) {
+        if (types.indexOf(t.value) === -1) { types.push(t.value); }
+        text = text.replace(t.re, ' ');
+      }
+    });
+    // What remains is the location/city.
+    const keywords = text.replace(/\s+/g, ' ').trim();
+    let url = 'https://www.crexi.com/properties?stateIds[]=FL';
+    types.forEach(function(ty){ url += '&propertyTypes[]=' + encodeURIComponent(ty); });
+    if (keywords) { url += '&keywords=' + encodeURIComponent(keywords); }
     window.open(url, '_blank');
   }
 
