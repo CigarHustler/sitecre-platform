@@ -1,1089 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SITE Commercial Real Estate — Florida</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SITE Commercial Real Estate — Florida Institutional CRE Advisory</title>
+<meta name="description" content="Institutional commercial real estate advisory across Florida. Buy, lease, and invest in office, industrial, retail, and land. Submit your requirements or book a free consultation." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --ink:#0B0D0C;
-  --stone:#151817;
-  --dark:#1A1E1C;
-  --slate:#2E3330;
-  --mid:#4A5250;
-  --mist:#7A8885;
-  --cloud:#B8C0BE;
-  --fog:#D8DEDD;
-  --paper:#F0F2F1;
-  --white:#FAFBFA;
-  --gold:#C4A05A;
-  --gold-d:#A8883E;
-  --green:#1E3D32;
-  --green-l:#2B5445;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Inter',system-ui,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-}
-html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--ink);color:var(--white);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --navy:#0A1628;
+    --navy-2:#0F2238;
+    --navy-3:#16304d;
+    --blue:#3B82F6;
+    --blue-dark:#2563EB;
+    --blue-light:#DBEAFE;
+    --white:#FFFFFF;
+    --ink:#0A1628;
+    --slate:#475569;
+    --muted:#64748B;
+    --line:#E2E8F0;
+    --bg:#F8FAFC;
+    --radius:14px;
+    --shadow:0 18px 40px rgba(10,22,40,0.12);
+    --maxw:1200px;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.display{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.1;color:var(--navy);letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 1.25rem;}
+  .eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);}
+  .section{padding:3.5rem 0;}
+  .section-head{max-width:640px;margin-bottom:2rem;}
+  .section-head h2{font-size:clamp(1.7rem,5vw,2.6rem);margin:0.5rem 0 0.6rem;}
+  .section-head p{color:var(--slate);font-size:1.02rem;}
 
-/* ── NAV ─────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;height:64px;
-  background:rgba(11,13,12,0.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-.nav-logo{
-  font-family:var(--mono);font-size:13px;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--gold);text-decoration:none;
-  font-weight:500;
-}
-.nav-links{display:flex;gap:32px;align-items:center;}
-.nav-links a{
-  font-size:12px;letter-spacing:0.08em;color:var(--cloud);
-  text-decoration:none;transition:color 0.15s;font-weight:400;
-}
-.nav-links a:hover{color:var(--white);}
-.nav-cta{
-  background:var(--gold);color:var(--ink);
-  font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
-  text-transform:uppercase;padding:8px 20px;text-decoration:none;
-  font-weight:500;transition:background 0.15s;
-}
-.nav-cta:hover{background:var(--gold-d);}
-.nav-pill{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--mist);
-  border:1px solid rgba(255,255,255,0.1);padding:6px 14px;
-}
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;font-family:'Inter';font-weight:600;font-size:0.95rem;padding:0.85rem 1.5rem;border-radius:10px;cursor:pointer;border:1.5px solid transparent;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;white-space:nowrap;}
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(59,130,246,0.4);}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,0.35);}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+  .btn-outline{background:#fff;color:var(--navy);border-color:var(--line);}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+  .btn-block{width:100%;}
 
-/* ── HERO ─────────────────────────────────────────── */
-.hero{
-  min-height:100vh;padding-top:64px;
-  display:grid;grid-template-rows:1fr auto;
-  position:relative;overflow:hidden;
-  background:var(--ink);
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 70% 55% at 65% 35%, rgba(30,61,50,0.45) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 15% 70%, rgba(196,160,90,0.08) 0%, transparent 60%);
-  pointer-events:none;
-}
-.hero-content{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:80px 48px 48px;max-width:1200px;margin:0 auto;width:100%;
-  position:relative;z-index:1;
-}
-.hero-eyebrow{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:24px;
-  display:flex;align-items:center;gap:12px;
-}
-.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
-.hero-h1{
-  font-family:var(--serif);font-size:clamp(52px,6.5vw,88px);
-  font-weight:300;line-height:1.04;letter-spacing:-0.015em;
-  color:var(--white);margin-bottom:28px;max-width:780px;
-}
-.hero-h1 em{font-style:italic;color:var(--gold);}
-.hero-sub{
-  font-size:16px;color:var(--cloud);max-width:500px;
-  line-height:1.75;margin-bottom:48px;font-weight:300;
-}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:80px;}
-.btn-primary{
-  background:var(--gold);color:var(--ink);
-  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
-  text-transform:uppercase;padding:14px 32px;text-decoration:none;
-  font-weight:500;transition:background 0.15s;border:none;cursor:pointer;
-}
-.btn-primary:hover{background:var(--gold-d);}
-.btn-ghost{
-  background:transparent;color:var(--cloud);
-  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
-  text-transform:uppercase;padding:14px 32px;text-decoration:none;
-  border:1px solid rgba(255,255,255,0.18);transition:border-color 0.15s,color 0.15s;
-  cursor:pointer;
-}
-.btn-ghost:hover{border-color:rgba(255,255,255,0.4);color:var(--white);}
+  /* Header */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:0.6rem;font-family:'Playfair Display';font-weight:700;font-size:1.15rem;color:var(--navy);}
+  .brand .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.85rem;font-weight:800;font-family:'Inter';letter-spacing:0.05em;}
+  .nav-links{display:none;align-items:center;gap:1.75rem;}
+  .nav-links a{font-size:0.92rem;font-weight:500;color:var(--slate);}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-cta{display:none;align-items:center;gap:0.75rem;}
+  .nav-phone{font-weight:600;color:var(--navy);font-size:0.92rem;}
+  .burger{display:inline-flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0.4rem;}
+  .burger span{width:24px;height:2px;background:var(--navy);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;gap:0.25rem;padding:1rem 1.25rem 1.5rem;border-bottom:1px solid var(--line);background:#fff;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:0.7rem 0;font-weight:500;color:var(--navy);border-bottom:1px solid var(--bg);}
+  .mobile-menu .btn{margin-top:0.75rem;}
 
-/* hero stats bar */
-.hero-stats{
-  display:flex;border-top:1px solid rgba(255,255,255,0.07);
-  position:relative;z-index:1;
-}
-.hero-stat{
-  flex:1;padding:28px 48px;border-right:1px solid rgba(255,255,255,0.07);
-}
-.hero-stat:last-child{border-right:none;}
-.hero-stat-num{
-  font-family:var(--serif);font-size:32px;font-weight:300;
-  color:var(--gold);line-height:1;margin-bottom:6px;letter-spacing:-0.01em;
-}
-.hero-stat-label{
-  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--mist);
-}
+  /* Hero */
+  .hero{position:relative;background:radial-gradient(1200px 600px at 80% -10%,rgba(59,130,246,0.35),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 60%,#0c2036 100%);color:#fff;overflow:hidden;}
+  .hero::after{content:"";position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path d="M0 39.5H40 M39.5 0V40" stroke="rgba(255,255,255,0.04)" stroke-width="1"/></svg>');pointer-events:none;}
+  .hero-inner{position:relative;z-index:1;padding:4rem 0 4.5rem;}
+  .hero .eyebrow{color:#93c5fd;}
+  .hero h1{color:#fff;font-size:clamp(2.3rem,8vw,4.2rem);margin:1rem 0 1.1rem;max-width:14ch;}
+  .hero h1 em{font-style:italic;color:#93c5fd;}
+  .hero p.lede{font-size:clamp(1rem,3.5vw,1.25rem);color:#cbd5e1;max-width:54ch;margin-bottom:2rem;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:0.85rem;}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:2rem;margin-top:2.75rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,0.12);}
+  .hero-stats .stat .n{font-family:'Playfair Display';font-size:1.9rem;font-weight:700;color:#fff;}
+  .hero-stats .stat .l{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:#94a3b8;}
 
-/* ── SEARCH SECTION ──────────────────────────────── */
-#properties{
-  background:var(--stone);padding:80px 48px;
-}
-.search-header{max-width:1200px;margin:0 auto 40px;}
-.section-eyebrow{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;
-}
-.section-title{
-  font-family:var(--serif);font-size:clamp(32px,3.5vw,50px);
-  font-weight:300;line-height:1.1;letter-spacing:-0.01em;color:var(--white);
-  margin-bottom:10px;
-}
-.section-sub{font-size:14px;color:var(--mist);font-weight:300;}
+  /* Search */
+  .search-band{background:var(--navy-2);padding:0 0 3rem;}
+  .search-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;margin-top:-2.5rem;position:relative;z-index:2;}
+  .search-card h3{font-size:1.15rem;margin-bottom:0.85rem;}
+  .search-form{display:flex;flex-direction:column;gap:0.75rem;}
+  .search-form input[type=text]{flex:1;padding:0.9rem 1rem;border:1.5px solid var(--line);border-radius:10px;font-size:1rem;font-family:'Inter';outline:none;}
+  .search-form input[type=text]:focus{border-color:var(--blue);}
+  .search-note{font-size:0.8rem;color:var(--muted);margin-top:0.5rem;}
 
-/* search bar */
-.search-wrap{max-width:1200px;margin:0 auto;}
-.search-bar{
-  display:flex;gap:0;margin-bottom:16px;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.03);
-}
-.search-input{
-  flex:1;background:transparent;border:none;outline:none;
-  color:var(--white);font-family:var(--sans);font-size:14px;
-  padding:16px 20px;
-}
-.search-input::placeholder{color:var(--mist);}
-.search-divider{width:1px;background:rgba(255,255,255,0.1);margin:10px 0;}
-.search-select{
-  background:transparent;border:none;outline:none;
-  color:var(--cloud);font-family:var(--mono);font-size:11px;
-  letter-spacing:0.1em;padding:16px 20px;cursor:pointer;
-  appearance:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237A8885'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;
-  padding-right:32px;min-width:140px;
-}
-.search-select option{background:var(--stone);color:var(--white);}
-.search-btn-main{
-  background:var(--gold);color:var(--ink);border:none;cursor:pointer;
-  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
-  text-transform:uppercase;padding:0 32px;font-weight:500;
-  transition:background 0.15s;white-space:nowrap;
-}
-.search-btn-main:hover{background:var(--gold-d);}
+  /* Lead cards */
+  .lead-cards{display:grid;grid-template-columns:1fr;gap:1rem;}
+  .lead-card{border:1px solid var(--line);border-radius:var(--radius);padding:1.75rem;background:#fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+  .lead-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--blue);}
+  .lead-card .icon{width:48px;height:48px;border-radius:12px;background:var(--blue-light);color:var(--blue-dark);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;}
+  .lead-card h3{font-size:1.35rem;margin-bottom:0.4rem;}
+  .lead-card p{color:var(--slate);font-size:0.95rem;margin-bottom:1.1rem;}
+  .lead-card a.more{color:var(--blue);font-weight:600;font-size:0.92rem;}
 
-/* filter chips */
-.filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;}
-.chip{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
-  text-transform:uppercase;color:var(--mist);
-  border:1px solid rgba(255,255,255,0.08);padding:6px 14px;
-  cursor:pointer;transition:all 0.15s;background:transparent;
-}
-.chip:hover,.chip.active{
-  color:var(--gold);border-color:rgba(196,160,90,0.4);
-  background:rgba(196,160,90,0.06);
-}
+  /* Listings */
+  .listings-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
+  .listing{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;transition:transform .18s ease,box-shadow .18s ease;}
+  .listing:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .listing .photo{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:1rem;color:#fff;}
+  .listing .badge{position:absolute;top:0.9rem;left:0.9rem;background:rgba(10,22,40,0.85);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.6rem;border-radius:6px;}
+  .listing .body{padding:1.1rem 1.25rem 1.4rem;}
+  .listing h3{font-size:1.15rem;margin-bottom:0.25rem;}
+  .listing .loc{color:var(--muted);font-size:0.88rem;margin-bottom:0.85rem;}
+  .listing .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--bg);padding-top:0.85rem;}
+  .listing .price{font-weight:700;color:var(--navy);}
+  .listing .view{color:var(--blue);font-weight:600;font-size:0.88rem;}
 
-/* listing grid */
-.listing-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  background:rgba(0,0,0,0.5);
-}
-.listing-card{
-  background:var(--dark);overflow:hidden;cursor:pointer;
-  transition:background 0.2s;
-}
-.listing-card:hover{background:var(--slate);}
-.listing-img{
-  height:180px;position:relative;overflow:hidden;
-  display:flex;align-items:flex-end;padding:14px;
-}
-.limg-a{background:linear-gradient(145deg,#1E3D32 0%,#0f2219 100%);}
-.limg-b{background:linear-gradient(145deg,#2C2415 0%,#1a1509 100%);}
-.limg-c{background:linear-gradient(145deg,#152030 0%,#0a121c 100%);}
-.limg-d{background:linear-gradient(145deg,#2A1520 0%,#180d14 100%);}
-.limg-e{background:linear-gradient(145deg,#1A2A20 0%,#0e1a13 100%);}
-.limg-f{background:linear-gradient(145deg,#251A10 0%,#160f08 100%);}
+  /* Services + markets */
+  .grid-3{display:grid;grid-template-columns:1fr;gap:1rem;}
+  .svc{padding:1.5rem;border-radius:var(--radius);background:var(--bg);border:1px solid var(--line);}
+  .svc .icon{font-size:1.5rem;margin-bottom:0.6rem;}
+  .svc h3{font-size:1.15rem;margin-bottom:0.35rem;}
+  .svc p{color:var(--slate);font-size:0.92rem;}
+  .markets{background:var(--navy);color:#fff;}
+  .markets .section-head h2,.markets .display{color:#fff;}
+  .markets .section-head p{color:#94a3b8;}
+  .market-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;}
+  .market{border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:1.1rem 1.2rem;transition:background .15s ease,border-color .15s ease;}
+  .market:hover{background:var(--navy-2);border-color:var(--blue);}
+  .market .city{font-family:'Playfair Display';font-size:1.2rem;font-weight:600;}
+  .market .sub{font-size:0.78rem;color:#94a3b8;}
 
-/* subtle grid overlay on listing images */
-.listing-img::before{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
-  background-size:24px 24px;
-}
-.listing-img::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 60%);
-}
-.listing-badge{
-  position:relative;z-index:1;
-  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;
-  text-transform:uppercase;background:var(--gold);color:var(--ink);
-  padding:4px 10px;font-weight:500;
-}
-.listing-badge.off{background:var(--mid);color:var(--white);}
-.listing-badge.lease{background:var(--green-l);color:var(--white);}
-.listing-body{padding:20px;}
-.listing-type{
-  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--mist);margin-bottom:8px;display:block;
-}
-.listing-name{
-  font-family:var(--serif);font-size:20px;font-weight:400;
-  color:var(--white);line-height:1.2;margin-bottom:4px;
-}
-.listing-mkt{font-size:12px;color:var(--mist);margin-bottom:16px;}
-.listing-data{display:flex;gap:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);}
-.ld-item{}
-.ld-val{
-  font-family:var(--mono);font-size:13px;color:var(--gold);
-  display:block;font-weight:500;
-}
-.ld-key{
-  font-size:10px;color:var(--mist);text-transform:uppercase;
-  letter-spacing:0.1em;margin-top:2px;display:block;
-}
-.view-all-wrap{text-align:center;margin-top:40px;}
-.view-all{
-  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--gold);text-decoration:none;
-  border-bottom:1px solid rgba(196,160,90,0.3);padding-bottom:2px;
-  transition:border-color 0.15s;
-}
-.view-all:hover{border-color:var(--gold);}
+  /* Consultation / Calendly */
+  .consult{background:var(--bg);}
+  .consult-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start;}
+  .advisor{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.75rem;box-shadow:var(--shadow);}
+  .advisor .avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-size:1.5rem;font-weight:700;margin-bottom:1rem;}
+  .advisor h3{font-size:1.4rem;}
+  .advisor .role{color:var(--blue);font-weight:600;font-size:0.92rem;margin-bottom:0.85rem;}
+  .advisor p{color:var(--slate);font-size:0.95rem;margin-bottom:1.1rem;}
+  .calendly-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;min-height:560px;}
+  .calendly-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;min-height:560px;color:var(--muted);}
+  .calendly-placeholder .ico{font-size:2.5rem;margin-bottom:0.75rem;}
 
-/* search results count */
-.results-count{
-  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;
-  color:var(--mist);margin-bottom:24px;
-}
-.results-count span{color:var(--gold);}
+  /* Lead form */
+  .lead-form-section{background:var(--navy);color:#fff;}
+  .lead-form-section .section-head h2,.lead-form-section .display{color:#fff;}
+  .lead-form-section .section-head p{color:#94a3b8;}
+  .form-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start;}
+  .lead-form{background:#fff;border-radius:var(--radius);padding:1.75rem;box-shadow:var(--shadow);}
+  .field{margin-bottom:1rem;}
+  .field label{display:block;font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.35rem;}
+  .field input,.field select,.field textarea{width:100%;padding:0.8rem 0.9rem;border:1.5px solid var(--line);border-radius:10px;font-family:'Inter';font-size:0.95rem;color:var(--ink);outline:none;background:#fff;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);}
+  .field-row{display:grid;grid-template-columns:1fr;gap:1rem;}
+  .form-success{display:none;background:#ecfdf5;border:1px solid #6ee7b7;color:#047857;padding:0.9rem 1rem;border-radius:10px;font-size:0.9rem;font-weight:600;margin-bottom:1rem;}
+  .form-success.show{display:block;}
+  .why-list{list-style:none;display:flex;flex-direction:column;gap:1.1rem;}
+  .why-list li{display:flex;gap:0.85rem;}
+  .why-list .check{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,0.18);color:#93c5fd;display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .why-list h4{color:#fff;font-size:1rem;font-family:'Inter';font-weight:600;}
+  .why-list p{color:#94a3b8;font-size:0.9rem;}
 
-/* ── SERVICES ─────────────────────────────────────── */
-#services{
-  padding:80px 48px;max-width:100%;background:var(--ink);
-}
-.services-inner{max-width:1200px;margin:0 auto;}
-.services-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  background:rgba(255,255,255,0.04);margin-top:48px;
-}
-.svc-card{
-  background:var(--ink);padding:36px 32px;
-  border-bottom:2px solid transparent;transition:border-color 0.2s,background 0.2s;
-}
-.svc-card:hover{background:var(--stone);border-bottom-color:var(--gold);}
-.svc-icon{
-  width:36px;height:36px;margin-bottom:20px;
-  display:flex;align-items:center;justify-content:center;
-}
-.svc-icon svg{width:28px;height:28px;stroke:var(--gold);stroke-width:1.5;fill:none;}
-.svc-title{
-  font-family:var(--serif);font-size:22px;font-weight:400;
-  color:var(--white);margin-bottom:10px;line-height:1.2;
-}
-.svc-desc{font-size:13px;color:var(--mist);line-height:1.7;}
-.svc-link{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--gold);text-decoration:none;
-  display:inline-block;margin-top:16px;
-}
+  /* Floating call button */
+  .floating-call{position:fixed;right:1rem;bottom:1rem;z-index:60;display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:#fff;font-weight:700;padding:0.9rem 1.25rem;border-radius:999px;box-shadow:0 12px 30px rgba(59,130,246,0.5);transition:transform .15s ease,background .15s ease;}
+  .floating-call:hover{background:var(--blue-dark);transform:translateY(-3px);}
+  .floating-call .dot{width:9px;height:9px;border-radius:50%;background:#86efac;box-shadow:0 0 0 4px rgba(134,239,172,0.3);}
 
-/* ── MARKETS ──────────────────────────────────────── */
-#markets{
-  background:var(--green);padding:80px 48px;
-}
-.markets-inner{max-width:1200px;margin:0 auto;}
-.markets-grid{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
-  background:rgba(0,0,0,0.3);margin-top:48px;
-}
-.mkt-card{
-  background:rgba(255,255,255,0.04);padding:28px 24px;
-  cursor:pointer;transition:background 0.2s;
-}
-.mkt-card:hover{background:rgba(255,255,255,0.1);}
-.mkt-name{
-  font-family:var(--serif);font-size:20px;font-weight:400;
-  color:var(--white);margin-bottom:6px;
-}
-.mkt-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:16px;font-weight:300;}
-.mkt-stat{
-  font-family:var(--mono);font-size:18px;font-weight:500;
-  color:var(--gold);display:block;margin-bottom:4px;
-}
-.mkt-stat-label{
-  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;
-  text-transform:uppercase;color:rgba(255,255,255,0.35);
-}
+  /* Footer */
+  footer.site{background:#06101f;color:#94a3b8;padding:3rem 0 1.5rem;}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem;}
+  footer .brand{color:#fff;margin-bottom:0.85rem;}
+  footer h4{color:#fff;font-family:'Inter';font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.9rem;}
+  footer a{display:block;color:#94a3b8;font-size:0.92rem;padding:0.2rem 0;}
+  footer a:hover{color:var(--blue);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:1.25rem;display:flex;flex-direction:column;gap:0.5rem;font-size:0.82rem;}
 
-/* ── INSIGHTS ─────────────────────────────────────── */
-#insights{
-  padding:80px 48px;background:var(--stone);
-}
-.insights-inner{max-width:1200px;margin:0 auto;}
-.insights-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:2px;
-  background:rgba(0,0,0,0.4);margin-top:48px;
-}
-.insight-card{background:var(--dark);padding:32px;cursor:pointer;transition:background 0.2s;}
-.insight-card:hover{background:var(--slate);}
-.insight-tag{
-  font-family:var(--mono);font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;
-}
-.insight-title{
-  font-family:var(--serif);font-size:22px;font-weight:400;
-  color:var(--white);line-height:1.25;margin-bottom:10px;
-}
-.insight-card.featured .insight-title{font-size:28px;}
-.insight-excerpt{font-size:13px;color:var(--mist);line-height:1.7;}
-.insight-meta{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
-  color:var(--mid);margin-top:20px;padding-top:16px;
-  border-top:1px solid rgba(255,255,255,0.06);
-}
-
-/* ── PIPELINE TICKER ─────────────────────────────── */
-.ticker{
-  background:var(--gold);padding:14px 0;overflow:hidden;
-  white-space:nowrap;
-}
-.ticker-inner{
-  display:inline-flex;gap:64px;animation:ticker 30s linear infinite;
-}
-.ticker-item{
-  font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
-  text-transform:uppercase;color:var(--ink);font-weight:500;
-  flex-shrink:0;
-}
-.ticker-sep{color:rgba(0,0,0,0.3);}
-@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ── CONTACT / CTA ────────────────────────────────── */
-#contact{
-  background:var(--ink);padding:96px 48px;
-  border-top:1px solid rgba(255,255,255,0.06);
-}
-.contact-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
-}
-.contact-left{}
-.contact-right{}
-.contact-title{
-  font-family:var(--serif);font-size:clamp(36px,4vw,56px);
-  font-weight:300;line-height:1.08;color:var(--white);margin-bottom:20px;
-  letter-spacing:-0.01em;
-}
-.contact-title em{font-style:italic;color:var(--gold);}
-.contact-desc{font-size:14px;color:var(--mist);line-height:1.75;margin-bottom:36px;}
-.contact-detail{
-  display:flex;align-items:center;gap:12px;margin-bottom:12px;
-  font-size:13px;color:var(--cloud);
-}
-.contact-detail a{color:var(--cloud);text-decoration:none;}
-.contact-form{display:flex;flex-direction:column;gap:2px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
-.form-field{
-  background:var(--stone);border:none;outline:none;
-  color:var(--white);font-family:var(--sans);font-size:14px;
-  padding:16px 18px;transition:background 0.15s;
-  font-weight:300;
-}
-.form-field:focus{background:var(--slate);}
-.form-field::placeholder{color:var(--mist);}
-.form-select{
-  background:var(--stone);border:none;outline:none;
-  color:var(--cloud);font-family:var(--sans);font-size:14px;
-  padding:16px 18px;cursor:pointer;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237A8885'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 16px center;
-}
-.form-select option{background:var(--stone);}
-textarea.form-field{resize:vertical;min-height:100px;font-family:var(--sans);}
-.form-submit{
-  background:var(--gold);color:var(--ink);border:none;cursor:pointer;
-  font-family:var(--mono);font-size:11px;letter-spacing:0.18em;
-  text-transform:uppercase;padding:16px;font-weight:500;
-  transition:background 0.15s;margin-top:4px;
-}
-.form-submit:hover{background:var(--gold-d);}
-.form-note{font-size:11px;color:var(--mid);margin-top:12px;line-height:1.5;}
-
-/* ── FOOTER ───────────────────────────────────────── */
-footer{
-  background:var(--stone);padding:48px;
-  border-top:1px solid rgba(255,255,255,0.06);
-}
-.footer-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
-}
-.footer-brand{font-family:var(--mono);font-size:14px;letter-spacing:0.2em;color:var(--gold);margin-bottom:14px;}
-.footer-tagline{font-size:13px;color:var(--mist);line-height:1.7;font-weight:300;}
-.footer-col h4{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--mid);margin-bottom:18px;
-}
-.footer-col a{
-  display:block;font-size:13px;color:var(--mist);text-decoration:none;
-  margin-bottom:10px;transition:color 0.15s;
-}
-.footer-col a:hover{color:var(--cloud);}
-.footer-bottom{
-  max-width:1200px;margin:32px auto 0;padding-top:24px;
-  border-top:1px solid rgba(255,255,255,0.06);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.footer-bottom p{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--mid);
-}
-
-/* ── MODAL ────────────────────────────────────────── */
-.modal-overlay{
-  position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);
-  display:none;align-items:center;justify-content:center;padding:24px;
-}
-.modal-overlay.open{display:flex;}
-.modal{
-  background:var(--dark);max-width:680px;width:100%;
-  max-height:90vh;overflow-y:auto;position:relative;
-}
-.modal-header{
-  padding:32px 36px;border-bottom:1px solid rgba(255,255,255,0.07);
-  display:flex;justify-content:space-between;align-items:flex-start;
-}
-.modal-close{
-  background:none;border:none;color:var(--mist);cursor:pointer;
-  font-size:20px;line-height:1;padding:4px;
-}
-.modal-body{padding:36px;}
-.modal-img{
-  height:220px;background:linear-gradient(145deg,#1E3D32 0%,#0f2219 100%);
-  position:relative;margin:-36px -36px 28px;
-}
-.modal-img::before{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
-  background-size:28px 28px;
-}
-.modal-tag{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;
-}
-.modal-title{
-  font-family:var(--serif);font-size:30px;font-weight:400;
-  color:var(--white);margin-bottom:4px;line-height:1.15;
-}
-.modal-loc{font-size:13px;color:var(--mist);margin-bottom:24px;}
-.modal-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
-  background:rgba(0,0,0,0.4);margin-bottom:24px;
-}
-.modal-stat{background:var(--stone);padding:16px;}
-.modal-stat-val{
-  font-family:var(--mono);font-size:15px;color:var(--gold);
-  display:block;margin-bottom:4px;font-weight:500;
-}
-.modal-stat-key{
-  font-size:10px;color:var(--mist);text-transform:uppercase;
-  letter-spacing:0.1em;
-}
-.modal-desc{font-size:14px;color:var(--cloud);line-height:1.75;margin-bottom:24px;}
-.modal-highlights{margin-bottom:24px;}
-.modal-highlights h4{
-  font-family:var(--mono);font-size:10px;letter-spacing:0.16em;
-  text-transform:uppercase;color:var(--mist);margin-bottom:14px;
-}
-.modal-highlights li{
-  font-size:13px;color:var(--cloud);margin-bottom:8px;
-  list-style:none;padding-left:16px;position:relative;
-}
-.modal-highlights li::before{content:'—';position:absolute;left:0;color:var(--gold);}
-.modal-cta{
-  background:var(--gold);color:var(--ink);border:none;cursor:pointer;
-  font-family:var(--mono);font-size:11px;letter-spacing:0.18em;
-  text-transform:uppercase;padding:15px 32px;font-weight:500;
-  width:100%;transition:background 0.15s;
-}
-.modal-cta:hover{background:var(--gold-d);}
-
-/* ── TOAST ────────────────────────────────────────── */
-.toast{
-  position:fixed;bottom:32px;right:32px;z-index:300;
-  background:var(--green-l);color:var(--white);
-  padding:14px 24px;font-family:var(--mono);font-size:12px;
-  letter-spacing:0.1em;transform:translateY(100px);opacity:0;
-  transition:all 0.3s;pointer-events:none;
-}
-.toast.show{transform:translateY(0);opacity:1;}
-
-/* ── RESPONSIVE ───────────────────────────────────── */
-@media(max-width:900px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
-  .hero-content{padding:60px 20px 40px;}
-  .hero-stats{flex-wrap:wrap;}
-  .hero-stat{min-width:50%;border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
-  #properties,#services,#markets,#insights,#contact{padding:60px 20px;}
-  .listing-grid{grid-template-columns:1fr;}
-  .services-grid{grid-template-columns:1fr;}
-  .markets-grid{grid-template-columns:1fr 1fr;}
-  .insights-grid{grid-template-columns:1fr;}
-  .contact-inner{grid-template-columns:1fr;gap:40px;}
-  .form-row{grid-template-columns:1fr;}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:32px;}
-  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
-  .modal-stats{grid-template-columns:1fr 1fr;}
-}
+  /* Responsive */
+  @media(min-width:680px){
+    .lead-cards{grid-template-columns:repeat(3,1fr);}
+    .listings-grid{grid-template-columns:repeat(2,1fr);}
+    .grid-3{grid-template-columns:repeat(3,1fr);}
+    .market-grid{grid-template-columns:repeat(3,1fr);}
+    .field-row{grid-template-columns:1fr 1fr;}
+    .search-form{flex-direction:row;}
+    .search-form .btn{width:auto;}
+  }
+  @media(min-width:920px){
+    .nav-links{display:flex;}
+    .nav-cta{display:flex;}
+    .burger{display:none;}
+    .section{padding:5rem 0;}
+    .listings-grid{grid-template-columns:repeat(3,1fr);}
+    .market-grid{grid-template-columns:repeat(4,1fr);}
+    .consult-grid{grid-template-columns:0.85fr 1.15fr;}
+    .form-grid{grid-template-columns:1fr 1fr;}
+    .hero-inner{padding:6rem 0 6.5rem;}
+  }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">SITE · CRE</a>
-  <div class="nav-links">
-    <a href="#properties">Properties</a>
+<!-- Header -->
+<header class="site">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="mark">SITE</span> Commercial Real Estate</a>
+    <nav class="nav-links">
+      <a href="#search">Search</a>
+      <a href="#listings">Listings</a>
+      <a href="#services">Services</a>
+      <a href="#markets">Markets</a>
+      <a href="#consultation">Advisors</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+15615988838" class="nav-phone">(561) 598-8838</a>
+      <a href="#requirements" class="btn btn-primary">Submit Requirements</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu wrap" id="mobileMenu">
+    <a href="#search">Search</a>
+    <a href="#listings">Listings</a>
     <a href="#services">Services</a>
     <a href="#markets">Markets</a>
-    <a href="#insights">Insights</a>
-    <a href="#contact">Contact</a>
+    <a href="#consultation">Advisors</a>
+    <a href="tel:+15615988838">📞 (561) 598-8838</a>
+    <a href="#requirements" class="btn btn-primary btn-block">Submit Requirements</a>
   </div>
-  <div style="display:flex;align-items:center;gap:12px;">
-    <span class="nav-pill">Florida · Statewide</span>
-    <a href="#contact" class="nav-cta">Speak With an Advisor</a>
-  </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <span class="hero-eyebrow">Florida-wide institutional commercial real estate</span>
-    <h1 class="hero-h1">Florida, executed with<br><em>institutional discipline.</em></h1>
-    <p class="hero-sub">Brokerage, leasing, investment sales, and capital markets for investors, owners, and occupiers across every major Florida market.</p>
-    <div class="hero-actions">
-      <a href="#properties" class="btn-primary">Browse Active Listings</a>
-      <a href="#contact" class="btn-ghost">Submit Your Requirements</a>
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Institutional CRE Advisory · Statewide Florida</span>
+    <h1>Florida commercial real estate, <em>executed with precision.</em></h1>
+    <p class="lede">Buy, lease, and invest in office, industrial, retail, and land — backed by institutional-grade advisory across every major Florida market.</p>
+    <div class="hero-cta">
+      <a href="#requirements" class="btn btn-primary">Submit Requirements</a>
+      <a href="#consultation" class="btn btn-ghost">Book a Free Consultation</a>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">$428M</div>
-      <div class="hero-stat-label">Total pipeline</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">185+</div>
-      <div class="hero-stat-label">Capital relationships</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">71 days</div>
-      <div class="hero-stat-label">Avg. days to close</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">7</div>
-      <div class="hero-stat-label">Major Florida markets</div>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">$2.4B+</div><div class="l">Assets Advised</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">Major Markets</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">Florida Focused</div></div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-inner" id="ticker">
-    <span class="ticker-item">Investment Sales <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Miami · Tampa Bay · Orlando · Jacksonville <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Landlord Representation <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Core &amp; Value-Add <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Capital Markets <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Office · Industrial · Retail · Mixed-Use <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Portfolio Strategy <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Development Advisory <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Investment Sales <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Miami · Tampa Bay · Orlando · Jacksonville <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Landlord Representation <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Core &amp; Value-Add <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Capital Markets <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Office · Industrial · Retail · Mixed-Use <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Portfolio Strategy <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Development Advisory <span class="ticker-sep">·</span></span>
-  </div>
-</div>
-
-<!-- PROPERTIES / SEARCH -->
-<section id="properties">
-  <div class="search-header">
-    <span class="section-eyebrow">Active Inventory</span>
-    <h2 class="section-title">Search Florida's institutional-grade commercial assets.</h2>
-    <p class="section-sub">Investment sales, leasing opportunities, and off-market mandates across every major Florida market.</p>
-  </div>
-
-  <div class="search-wrap">
-    <div class="search-bar">
-      <input class="search-input" type="text" id="searchInput" placeholder="Search by address, asset name, market, or keyword…" oninput="filterListings()"/>
-      <div class="search-divider"></div>
-      <select class="search-select" id="typeFilter" onchange="filterListings()">
-        <option value="">All Asset Types</option>
-        <option value="Industrial">Industrial</option>
-        <option value="Office">Office</option>
-        <option value="Retail">Retail</option>
-        <option value="Mixed-Use">Mixed-Use</option>
-        <option value="Medical">Medical</option>
-        <option value="Land">Land</option>
-      </select>
-      <div class="search-divider"></div>
-      <select class="search-select" id="marketFilter" onchange="filterListings()">
-        <option value="">All Markets</option>
-        <option value="Miami">Miami</option>
-        <option value="Tampa">Tampa Bay</option>
-        <option value="Orlando">Orlando</option>
-        <option value="Jacksonville">Jacksonville</option>
-        <option value="Southwest FL">Southwest FL</option>
-        <option value="Palm Beach">Palm Beach</option>
-      </select>
-      <div class="search-divider"></div>
-      <select class="search-select" id="dealFilter" onchange="filterListings()">
-        <option value="">Deal Type</option>
-        <option value="For Sale">For Sale</option>
-        <option value="Off Market">Off Market</option>
-        <option value="For Lease">For Lease</option>
-      </select>
-      <button class="search-btn-main" onclick="filterListings()">Search</button>
-    </div>
-
-    <div class="filter-chips">
-      <button class="chip active" onclick="setChip(this,'')">All</button>
-      <button class="chip" onclick="setChip(this,'Industrial')">Industrial</button>
-      <button class="chip" onclick="setChip(this,'Office')">Office</button>
-      <button class="chip" onclick="setChip(this,'Retail')">Retail</button>
-      <button class="chip" onclick="setChip(this,'Mixed-Use')">Mixed-Use</button>
-      <button class="chip" onclick="setChip(this,'Medical')">Medical</button>
-    </div>
-
-    <div class="results-count" id="resultsCount"><span id="countNum">9</span> active listings across Florida</div>
-
-    <div class="listing-grid" id="listingGrid">
-      <!-- cards injected by JS -->
-    </div>
-
-    <div class="view-all-wrap" id="viewAllWrap">
-      <a href="#contact" class="view-all">Request full off-market inventory → </a>
+<!-- Search -->
+<section class="search-band" id="search">
+  <div class="wrap">
+    <div class="search-card">
+      <h3>Search Florida's institutional-grade commercial assets</h3>
+      <form class="search-form" id="searchForm" onsubmit="return crexiSearch(event)">
+        <input type="text" id="searchInput" placeholder="City, asset type, or keyword (e.g. Tampa industrial)" />
+        <button type="submit" class="btn btn-primary">Search on Crexi →</button>
+      </form>
+      <p class="search-note">Live listings powered by Crexi. Your search opens in a new tab.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-inner">
-    <span class="section-eyebrow">Institutional Services</span>
-    <h2 class="section-title">Execution across every discipline.</h2>
-
-    <div class="services-grid">
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        </div>
-        <div class="svc-title">Investment Sales</div>
-        <p class="svc-desc">Advisory for single assets and portfolios across office, industrial, retail, mixed-use, and medical in all major Florida metros.</p>
-        <a href="#contact" class="svc-link">Discuss a sale →</a>
+<!-- Lead cards: Buy / Lease / Invest -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How can we help</span>
+      <h2>Tell us your strategy</h2>
+      <p>Whether you're acquiring, leasing, or deploying capital, our advisors source and execute the right opportunities.</p>
+    </div>
+    <div class="lead-cards">
+      <div class="lead-card">
+        <div class="icon">🏢</div>
+        <h3>Buy</h3>
+        <p>Source on- and off-market acquisitions across office, industrial, retail, and land with full underwriting support.</p>
+        <a href="#requirements" class="more" onclick="setIntent('Buy')">Submit buy criteria →</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-        </div>
-        <div class="svc-title">Landlord Representation</div>
-        <p class="svc-desc">Data-driven leasing strategies, merchandising plans, and tenant outreach aligned with your long-term asset strategy.</p>
-        <a href="#contact" class="svc-link">Review your leasing →</a>
+      <div class="lead-card">
+        <div class="icon">📐</div>
+        <h3>Lease</h3>
+        <p>Tenant and landlord representation that secures the right space, terms, and timing for your operations.</p>
+        <a href="#requirements" class="more" onclick="setIntent('Lease')">Submit space needs →</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <div class="svc-title">Tenant Representation</div>
-        <p class="svc-desc">Occupier advisory for corporate, medical, industrial, and retail users evaluating Florida expansions, relocations, or consolidations.</p>
-        <a href="#contact" class="svc-link">Share your requirements →</a>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <div class="svc-title">Capital Markets</div>
-        <p class="svc-desc">Debt, equity, and JV capital across the risk spectrum sourced from institutional and private capital relationships statewide.</p>
-        <a href="#contact" class="svc-link">Discuss capital needs →</a>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22,8.5 12,15.5 2,8.5"/></svg>
-        </div>
-        <div class="svc-title">Development Advisory</div>
-        <p class="svc-desc">Market feasibility, underwriting, and program definition for ground-up or repositioning opportunities in Florida's growing corridors.</p>
-        <a href="#contact" class="svc-link">Evaluate a project →</a>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-        </div>
-        <div class="svc-title">Portfolio Strategy</div>
-        <p class="svc-desc">Portfolio diagnostics, hold/sell and recapitalization strategies, and sequencing for Florida-focused and multi-state owners.</p>
-        <a href="#contact" class="svc-link">Review your portfolio →</a>
+      <div class="lead-card">
+        <div class="icon">📈</div>
+        <h3>Invest</h3>
+        <p>Investment sales and capital-markets advisory for single assets and portfolios across the state.</p>
+        <a href="#requirements" class="more" onclick="setIntent('Invest')">Submit investment thesis →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MARKETS -->
-<section id="markets">
-  <div class="markets-inner">
-    <span class="section-eyebrow">Florida Coverage</span>
-    <h2 class="section-title">Every major market. One platform.</h2>
+<!-- Featured listings -->
+<section class="section" id="listings" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Featured opportunities</span>
+      <h2>Current Florida listings</h2>
+      <p>A selection of institutional-grade assets currently represented. Full inventory and live data on Crexi.</p>
+    </div>
+    <div class="listings-grid">
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#0A1628,#2563EB);"><span class="badge">Industrial</span></div>
+        <div class="body"><h3>Class A Distribution — Tampa</h3><div class="loc">Hillsborough County · 142,000 SF</div><div class="meta"><span class="price">$24,500,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#16304d,#3B82F6);"><span class="badge">Office</span></div>
+        <div class="body"><h3>Downtown Office Tower — Orlando</h3><div class="loc">Orange County · 88,400 SF</div><div class="meta"><span class="price">$31,000,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#0c2036,#1d4ed8);"><span class="badge">Retail</span></div>
+        <div class="body"><h3>Grocery-Anchored Center — Miami</h3><div class="loc">Miami-Dade County · 64,200 SF</div><div class="meta"><span class="price">$18,750,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#0A1628,#1e40af);"><span class="badge">Land</span></div>
+        <div class="body"><h3>Development Site — Jacksonville</h3><div class="loc">Duval County · 22.5 Acres</div><div class="meta"><span class="price">$9,200,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#16304d,#2563EB);"><span class="badge">Flex</span></div>
+        <div class="body"><h3>Flex / Light Industrial — Fort Myers</h3><div class="loc">Lee County · 51,800 SF</div><div class="meta"><span class="price">$12,400,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+      <a class="listing" href="https://www.crexi.com/properties" target="_blank" rel="noopener">
+        <div class="photo" style="background:linear-gradient(135deg,#0c2036,#3B82F6);"><span class="badge">Medical</span></div>
+        <div class="body"><h3>Medical Office Portfolio — Naples</h3><div class="loc">Collier County · 39,600 SF</div><div class="meta"><span class="price">$16,900,000</span><span class="view">View on Crexi →</span></div></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:2rem;"><a href="https://www.crexi.com/properties" target="_blank" rel="noopener" class="btn btn-outline">Browse all listings on Crexi →</a></div>
+  </div>
+</section>
 
-    <div class="markets-grid">
-      <div class="mkt-card">
-        <div class="mkt-name">Miami</div>
-        <div class="mkt-sub">South Florida</div>
-        <span class="mkt-stat">24</span>
-        <span class="mkt-stat-label">Active mandates</span>
-      </div>
-      <div class="mkt-card">
-        <div class="mkt-name">Tampa Bay</div>
-        <div class="mkt-sub">West Coast</div>
-        <span class="mkt-stat">18</span>
-        <span class="mkt-stat-label">Active mandates</span>
-      </div>
-      <div class="mkt-card">
-        <div class="mkt-name">Orlando</div>
-        <div class="mkt-sub">Central Florida</div>
-        <span class="mkt-stat">15</span>
-        <span class="mkt-stat-label">Active mandates</span>
-      </div>
-      <div class="mkt-card">
-        <div class="mkt-name">Jacksonville</div>
-        <div class="mkt-sub">Northeast FL</div>
-        <span class="mkt-stat">11</span>
-        <span class="mkt-stat-label">Active mandates</span>
-      </div>
-      <div class="mkt-card">
-        <div class="mkt-name">Southwest FL</div>
-        <div class="mkt-sub">Fort Myers · Naples</div>
-        <span class="mkt-stat">8</span>
-        <span class="mkt-stat-label">Active mandates</span>
-      </div>
+<!-- Services -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Capabilities</span>
+      <h2>Execution across every discipline</h2>
+      <p>Full-service commercial real estate advisory for owners, occupiers, and investors.</p>
+    </div>
+    <div class="grid-3">
+      <div class="svc"><div class="icon">🤝</div><h3>Tenant &amp; Landlord Rep</h3><p>Leasing strategy and negotiation that aligns space, terms, and timing with your business goals.</p></div>
+      <div class="svc"><div class="icon">💼</div><h3>Investment Sales</h3><p>Disposition and acquisition advisory for single assets and portfolios across all property types.</p></div>
+      <div class="svc"><div class="icon">🏦</div><h3>Capital Markets</h3><p>Debt and equity structuring, recapitalizations, and financing for institutional-quality transactions.</p></div>
+      <div class="svc"><div class="icon">🧭</div><h3>Advisory &amp; Site Selection</h3><p>Market intelligence, underwriting, and site selection to inform high-conviction decisions.</p></div>
+      <div class="svc"><div class="icon">🏗️</div><h3>Land &amp; Development</h3><p>Entitlement, disposition, and development advisory for land and value-add opportunities.</p></div>
+      <div class="svc"><div class="icon">📊</div><h3>Asset Management</h3><p>Hold-period strategy and operational oversight to protect and grow asset value.</p></div>
     </div>
   </div>
 </section>
 
-<!-- INSIGHTS -->
-<section id="insights">
-  <div class="insights-inner">
-    <span class="section-eyebrow">Market Intelligence</span>
-    <h2 class="section-title">Perspectives on Florida CRE.</h2>
-
-    <div class="insights-grid">
-      <div class="insight-card featured">
-        <span class="insight-tag">Market Brief · Capital Markets · 2026</span>
-        <div class="insight-title">Florida Capital Flows and Yield Expectations Across Cycles</div>
-        <p class="insight-excerpt">Buyer demand, lender appetite, and pricing trends across Miami, Tampa, Orlando, and Jacksonville — with practical implications for owners and investors navigating 2026's rate environment.</p>
-        <div class="insight-meta">10 min read · Published June 2026</div>
-      </div>
-      <div class="insight-card">
-        <span class="insight-tag">Research Note · Office</span>
-        <div class="insight-title">How Florida's Office Markets Are Recalibrating</div>
-        <p class="insight-excerpt">Flight-to-quality and new supply are creating a sharper divide in performance across Tampa and Orlando's submarkets.</p>
-        <div class="insight-meta">3 min read</div>
-      </div>
-      <div class="insight-card">
-        <span class="insight-tag">Transaction Lens · Industrial</span>
-        <div class="insight-title">Pricing for Last-Mile and Bulk Industrial in Florida</div>
-        <p class="insight-excerpt">Yield expectations, lease-up risk, and capital appetite for infill and bulk logistics across key Florida corridors.</p>
-        <div class="insight-meta">5 min read</div>
-      </div>
+<!-- Markets -->
+<section class="section markets" id="markets">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Statewide coverage</span>
+      <h2 class="display">Every major market. One platform.</h2>
+      <p>Boots-on-the-ground advisory across Florida's highest-growth commercial corridors.</p>
+    </div>
+    <div class="market-grid">
+      <div class="market"><div class="city">Tampa</div><div class="sub">Tampa Bay / Hillsborough</div></div>
+      <div class="market"><div class="city">Orlando</div><div class="sub">Central Florida / Orange</div></div>
+      <div class="market"><div class="city">Miami</div><div class="sub">South Florida / Miami-Dade</div></div>
+      <div class="market"><div class="city">Jacksonville</div><div class="sub">North Florida / Duval</div></div>
+      <div class="market"><div class="city">Fort Myers</div><div class="sub">Southwest / Lee</div></div>
+      <div class="market"><div class="city">Naples</div><div class="sub">Southwest / Collier</div></div>
+      <div class="market"><div class="city">Sarasota</div><div class="sub">Gulf Coast / Sarasota</div></div>
+      <div class="market"><div class="city">St. Petersburg</div><div class="sub">Tampa Bay / Pinellas</div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <h2 class="contact-title">Tell us what you need from <em>Florida commercial real estate.</em></h2>
-      <p class="contact-desc">Whether you're selling a single asset, recapitalizing a portfolio, or securing space for your business — a senior advisor responds within one business day.</p>
-      <div class="contact-detail">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--gold);flex-shrink:0;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.79 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        <a href="tel:5615988838">(561) 598-8838</a>
-      </div>
-      <div class="contact-detail">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--gold);flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <a href="mailto:info@sitecre.com">info@sitecre.com</a>
-      </div>
-      <div class="contact-detail">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color:var(--gold);flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Florida — Statewide
-      </div>
+<!-- Consultation / Calendly -->
+<section class="section consult" id="consultation">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Book a free consultation</span>
+      <h2>Talk strategy with an advisor</h2>
+      <p>Schedule a no-obligation call to discuss acquisitions, dispositions, or your space requirements.</p>
     </div>
-    <div class="contact-right">
-      <div class="contact-form">
-        <div class="form-row">
-          <input class="form-field" type="text" placeholder="First name"/>
-          <input class="form-field" type="text" placeholder="Last name"/>
+    <div class="consult-grid">
+      <div class="advisor">
+        <div class="avatar">TS</div>
+        <h3>Thomas Schmidt</h3>
+        <div class="role">Principal Advisor · SITE Commercial Real Estate</div>
+        <p>Thomas advises owners and investors on institutional acquisitions, dispositions, and leasing across Florida's major markets. Book a 30-minute consultation to map your next move.</p>
+        <a href="tel:+15615988838" class="btn btn-outline">📞 (561) 598-8838</a>
+      </div>
+      <div class="calendly-wrap">
+        <!-- ============================================================
+             CALENDLY PLACEHOLDER — Thomas Schmidt
+             Replace the data-url below with Thomas's real Calendly link,
+             then uncomment the widget div + script to enable the inline embed.
+             Example: https://calendly.com/thomas-schmidt-sitecre/30min
+        ============================================================ -->
+        <!--
+        <div class="calendly-inline-widget" data-url="https://calendly.com/thomas-schmidt-sitecre/consultation" style="min-width:320px;height:560px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        -->
+        <div class="calendly-placeholder">
+          <div class="ico">📅</div>
+          <h3 style="color:var(--navy);">Calendly scheduling</h3>
+          <p style="max-width:36ch;margin-top:0.5rem;">Thomas Schmidt's live booking calendar will appear here. Connect his Calendly link to enable instant scheduling.</p>
+          <a href="#requirements" class="btn btn-primary" style="margin-top:1.25rem;">Request a call instead →</a>
         </div>
-        <input class="form-field" type="email" placeholder="Email address"/>
-        <input class="form-field" type="tel" placeholder="Phone number"/>
-        <select class="form-select form-field">
-          <option value="">I am a…</option>
-          <option>Seller / Owner</option>
-          <option>Investor / Buyer</option>
-          <option>Tenant / Occupier</option>
-          <option>Capital Provider</option>
-          <option>Developer</option>
-        </select>
-        <select class="form-select form-field">
-          <option value="">Asset type of interest</option>
-          <option>Industrial / Logistics</option>
-          <option>Office</option>
-          <option>Retail / Mixed-Use</option>
-          <option>Medical / MOB</option>
-          <option>Land / Development</option>
-          <option>Portfolio</option>
-        </select>
-        <textarea class="form-field" placeholder="Brief description of your property, requirements, or question…"></textarea>
-        <button class="form-submit" onclick="handleSubmit()">Submit to an Advisor</button>
-        <p class="form-note">A senior SITE CRE advisor will respond within one business day. All inquiries are handled with full discretion.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">SITE · CRE</div>
-      <p class="footer-tagline">Institutional commercial real estate advisory across the state of Florida. Brokerage, leasing, investment sales, and capital markets for sophisticated clients statewide.</p>
+<!-- Lead capture form (EmailJS) -->
+<section class="section lead-form-section" id="requirements">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Submit your requirements</span>
+      <h2 class="display">Tell us what you need from Florida CRE</h2>
+      <p>Share your criteria and an advisor will respond within one business day.</p>
     </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <a href="#services">Investment Sales</a>
-      <a href="#services">Landlord Rep</a>
-      <a href="#services">Tenant Rep</a>
-      <a href="#services">Capital Markets</a>
-      <a href="#services">Development</a>
-      <a href="#services">Portfolio Strategy</a>
-    </div>
-    <div class="footer-col">
-      <h4>Markets</h4>
-      <a href="#markets">Miami</a>
-      <a href="#markets">Tampa Bay</a>
-      <a href="#markets">Orlando</a>
-      <a href="#markets">Jacksonville</a>
-      <a href="#markets">Southwest FL</a>
-    </div>
-    <div class="footer-col">
-      <h4>Firm</h4>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Contact</a>
-      <a href="#contact">Careers</a>
-      <a href="#contact">Investor Portal</a>
-      <a href="tel:5615988838">(561) 598-8838</a>
+    <div class="form-grid">
+      <ul class="why-list">
+        <li><span class="check">✓</span><div><h4>On- and off-market access</h4><p>Reach opportunities before they hit the open market.</p></div></li>
+        <li><span class="check">✓</span><div><h4>Institutional underwriting</h4><p>Every recommendation is backed by rigorous analysis.</p></div></li>
+        <li><span class="check">✓</span><div><h4>Statewide market intelligence</h4><p>Local expertise in all seven major Florida markets.</p></div></li>
+        <li><span class="check">✓</span><div><h4>One business day response</h4><p>A real advisor follows up — never a call center.</p></div></li>
+      </ul>
+      <form class="lead-form" id="leadForm" onsubmit="return submitLead(event)">
+        <div class="form-success" id="formSuccess">✓ Thanks — your requirements have been received. An advisor will reach out within one business day.</div>
+        <div class="field-row">
+          <div class="field"><label for="lf-name">Full name</label><input id="lf-name" name="name" type="text" required placeholder="Jane Doe" /></div>
+          <div class="field"><label for="lf-company">Company</label><input id="lf-company" name="company" type="text" placeholder="Acme Capital" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="lf-email">Email</label><input id="lf-email" name="email" type="email" required placeholder="jane@company.com" /></div>
+          <div class="field"><label for="lf-phone">Phone</label><input id="lf-phone" name="phone" type="tel" placeholder="(561) 555-0100" /></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="lf-intent">I want to</label>
+            <select id="lf-intent" name="intent"><option>Buy</option><option>Lease</option><option>Invest</option><option>Sell / Dispose</option><option>Other</option></select>
+          </div>
+          <div class="field"><label for="lf-market">Target market</label>
+            <select id="lf-market" name="market"><option>Tampa</option><option>Orlando</option><option>Miami</option><option>Jacksonville</option><option>Fort Myers</option><option>Naples</option><option>Sarasota</option><option>Statewide</option></select>
+          </div>
+        </div>
+        <div class="field"><label for="lf-message">Your requirements</label><textarea id="lf-message" name="message" rows="4" placeholder="Asset type, size, budget, timing, and any specifics…"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Submit Requirements</button>
+        <p class="search-note" style="text-align:center;margin-top:0.75rem;color:#64748b;">Or call <a href="tel:+15615988838" style="color:var(--blue);font-weight:600;">(561) 598-8838</a>.</p>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 SITE Commercial Real Estate. Florida-focused. All rights reserved.</p>
-    <p>sitecre.com</p>
+</section>
+
+<!-- Footer -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><span class="mark" style="display:inline-flex;width:32px;height:32px;vertical-align:middle;">SITE</span> Commercial Real Estate</div>
+        <p style="max-width:34ch;">Institutional commercial real estate advisory across the state of Florida.</p>
+        <p style="margin-top:1rem;"><a href="tel:+15615988838" style="display:inline;color:#fff;font-weight:600;">(561) 598-8838</a><br /><a href="mailto:info@sitecre.com" style="display:inline;">info@sitecre.com</a></p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#search">Search Listings</a>
+        <a href="#listings">Featured Opportunities</a>
+        <a href="#services">Services</a>
+        <a href="#markets">Markets</a>
+        <a href="#consultation">Book a Consultation</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">Tenant &amp; Landlord Rep</a>
+        <a href="#services">Investment Sales</a>
+        <a href="#services">Capital Markets</a>
+        <a href="#services">Advisory &amp; Site Selection</a>
+        <a href="#services">Land &amp; Development</a>
+      </div>
+      <div>
+        <h4>Markets</h4>
+        <a href="#markets">Tampa</a>
+        <a href="#markets">Orlando</a>
+        <a href="#markets">Miami</a>
+        <a href="#markets">Jacksonville</a>
+        <a href="#markets">Fort Myers · Naples</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> SITE Commercial Real Estate. All rights reserved.</div>
+      <div>Florida Institutional CRE Advisory · Listings via Crexi</div>
+    </div>
   </div>
 </footer>
 
-<!-- LISTING MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <div>
-        <span class="modal-tag" id="mTag"></span>
-        <div class="modal-title" id="mTitle"></div>
-        <div class="modal-loc" id="mLoc"></div>
-      </div>
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-img" id="mImg"></div>
-      <div class="modal-stats" id="mStats"></div>
-      <p class="modal-desc" id="mDesc"></p>
-      <div class="modal-highlights" id="mHighlights"></div>
-      <button class="modal-cta" onclick="closeModalDirect();document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request Full Offering Memorandum</button>
-    </div>
-  </div>
-</div>
+<!-- Floating Book a Call -->
+<a href="#consultation" class="floating-call"><span class="dot"></span> Book a Call</a>
 
-<!-- TOAST -->
-<div class="toast" id="toast">Inquiry submitted — an advisor will be in touch within one business day.</div>
-
+<!-- EmailJS SDK (placeholder config) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-const listings = [
-  {
-    id:1, name:"Medley Logistics Park", type:"Industrial", sub:"Class A · Last-Mile",
-    market:"Miami", badge:"For Sale", img:"limg-a",
-    price:"$38.5M", sf:"218,400", cap:"5.2%", noi:"$2.0M",
-    desc:"A Class A last-mile industrial complex in Miami's Doral/Medley submarket. 100% occupied by two investment-grade tenants with staggered lease expirations providing near-term mark-to-market upside.",
-    highlights:["100% leased to investment-grade tenants","36' clear height throughout","LEED Silver certified","3-mile proximity to MIA airport","Recent roof and HVAC capital improvements"]
-  },
-  {
-    id:2, name:"Westshore Grand Tower", type:"Office", sub:"Trophy · CBD",
-    market:"Tampa", badge:"Off Market", img:"limg-b",
-    price:"$62.0M", sf:"184,000", cap:"6.8%", noi:"$4.2M",
-    desc:"An institutional-grade trophy office tower in Tampa Bay's Westshore Business District. The asset commands the submarket's highest rents and maintains a 94% occupancy rate with a weighted average lease term of 6.4 years.",
-    highlights:["94% occupied, WALT 6.4 years","Best-in-class amenity package","Covered structured parking 4:1,000","Recent $8M lobby and common-area renovation","Eligible for full-service lease repositioning"]
-  },
-  {
-    id:3, name:"Dr. Phillips Village", type:"Retail", sub:"Mixed-Use · NNN",
-    market:"Orlando", badge:"For Sale", img:"limg-c",
-    price:"$24.2M", sf:"96,800", cap:"6.1%", noi:"$1.48M",
-    desc:"A grocery-anchored mixed-use retail center in Orlando's affluent Dr. Phillips corridor. Anchored by a nationally recognized grocer with 11 years remaining on a NNN lease, surrounded by high-income residential density.",
-    highlights:["Nationally recognized grocer anchor","NNN lease — 11 years remaining","HHI $142K within 1-mile radius","Strong co-tenancy: national fitness, dining, service","Annual rent bumps at 2.0%"]
-  },
-  {
-    id:4, name:"Flagler Medical Plaza", type:"Medical", sub:"MOB · Class A",
-    market:"Miami", badge:"For Sale", img:"limg-d",
-    price:"$19.8M", sf:"68,200", cap:"5.8%", noi:"$1.15M",
-    desc:"A purpose-built Class A medical office building adjacent to a major health system campus in Miami's Flagler corridor. Fully occupied by health system-affiliated tenants under long-term leases.",
-    highlights:["100% leased to health system affiliates","On-campus adjacency to major hospital","Mission-critical tenant operations","HVAC and electrical above-standard","Institutional ownership history"]
-  },
-  {
-    id:5, name:"Southside Commerce Center", type:"Industrial", sub:"Flex · Multi-Tenant",
-    market:"Jacksonville", badge:"For Lease", img:"limg-e",
-    price:"$14/SF NNN", sf:"112,000", cap:"—", noi:"—",
-    desc:"A modern flex industrial park in Jacksonville's Southside submarket, offering suite configurations from 5,000 to 28,000 SF. Ideal for distribution, light manufacturing, or e-commerce fulfillment operations.",
-    highlights:["Suites from 5,000–28,000 SF","Grade-level and dock-high doors","24' clear height minimum","I-95 interchange visibility","Immediate availability on select suites"]
-  },
-  {
-    id:6, name:"The Meridian at Midtown", type:"Mixed-Use", sub:"Retail + Office",
-    market:"Tampa", badge:"For Sale", img:"limg-f",
-    price:"$31.5M", sf:"148,000", cap:"5.9%", noi:"$1.86M",
-    desc:"A premier mixed-use asset in Tampa's Midtown district featuring ground-floor retail, restaurant, and fitness tenants topped by four floors of creative office space. Benefiting from dense walkable urban location.",
-    highlights:["Ground floor retail 100% leased","Office floors 78% occupied with strong tour activity","Rare Midtown Tampa urban core position","30,000 VPD corridor frontage","Value-add upside through office lease-up"]
-  },
-  {
-    id:7, name:"Beacon Industrial Preserve", type:"Industrial", sub:"Distribution · BTS",
-    market:"Orlando", badge:"Off Market", img:"limg-a",
-    price:"$44.0M", sf:"310,000", cap:"4.9%", noi:"$2.16M",
-    desc:"A single-tenant build-to-suit distribution facility in Orlando's I-4 corridor occupied by a Fortune 500 logistics tenant on a 12-year absolute NNN lease. Zero landlord responsibilities.",
-    highlights:["Fortune 500 tenant — 12-year absolute NNN","Zero landlord responsibilities","40' clear height, 185' truck court","ESFR fire suppression throughout","Priced below replacement cost"]
-  },
-  {
-    id:8, name:"Harbour Centre Office Park", type:"Office", sub:"Suburban · Class A",
-    market:"Palm Beach", badge:"For Sale", img:"limg-b",
-    price:"$27.8M", sf:"125,400", cap:"6.4%", noi:"$1.78M",
-    desc:"A two-building suburban office campus in Palm Beach County's preferred I-95 corridor. Institutional ownership history with recent capital invested in lobby, HVAC, and amenity upgrades.",
-    highlights:["Two-building campus on 8-acre site","85% occupied, 4.1-year WALT","$4.2M recent capital improvements","Adjacent executive hotel with preferred rates","Strong in-place cash flow with upside"]
-  },
-  {
-    id:9, name:"SW Florida Commerce Park", type:"Industrial", sub:"Industrial · Multi-Tenant",
-    market:"Southwest FL", badge:"For Sale", img:"limg-c",
-    price:"$16.4M", sf:"89,500", cap:"5.5%", noi:"$0.90M",
-    desc:"A stabilized multi-tenant industrial park in Fort Myers serving the booming Southwest Florida market. 97% occupied with diversified tenant mix across distribution, service, and light manufacturing uses.",
-    highlights:["97% occupied, diversified tenant roster","Below-market rents providing rent growth runway","24' clear height throughout","Institutional-quality construction","Emerging Southwest FL logistics demand driver"]
-  }
-];
+  // ============================================================
+  // EmailJS PLACEHOLDER — replace these three values to go live.
+  // Sign up at https://www.emailjs.com, create a service + template,
+  // and paste your IDs below. The lead form will then email directly.
+  // ============================================================
+  var EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  var EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  var EMAILJS_READY = EMAILJS_PUBLIC_KEY.indexOf('YOUR_') !== 0;
+  if (EMAILJS_READY && window.emailjs) { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); }
 
-function renderListings(data){
-  const grid = document.getElementById('listingGrid');
-  document.getElementById('countNum').textContent = data.length;
-  if(data.length===0){
-    grid.innerHTML='<div style="grid-column:1/-1;padding:60px;text-align:center;color:var(--mist);font-family:var(--mono);font-size:12px;letter-spacing:0.12em;">NO LISTINGS MATCH YOUR SEARCH — <a href=\'#contact\' style=\'color:var(--gold);\'>contact us for off-market inventory</a></div>';
-    return;
-  }
-  grid.innerHTML = data.map(l=>`
-    <div class="listing-card" onclick="openModal(${l.id})">
-      <div class="listing-img ${l.img}">
-        <span class="listing-badge ${l.badge==='Off Market'?'off':l.badge==='For Lease'?'lease':''}">${l.badge}</span>
-      </div>
-      <div class="listing-body">
-        <span class="listing-type">${l.type} · ${l.sub}</span>
-        <div class="listing-name">${l.name}</div>
-        <div class="listing-mkt">${l.market}, FL</div>
-        <div class="listing-data">
-          <div class="ld-item"><span class="ld-val">${l.price}</span><span class="ld-key">${l.badge==='For Lease'?'Asking Rate':'Price'}</span></div>
-          <div class="ld-item"><span class="ld-val">${parseInt(l.sf.replace(/,/g,'')).toLocaleString()}</span><span class="ld-key">Sq Ft</span></div>
-          ${l.cap!=='—'?`<div class="ld-item"><span class="ld-val">${l.cap}</span><span class="ld-key">Cap Rate</span></div>`:''}
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function filterListings(){
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const type = document.getElementById('typeFilter').value;
-  const market = document.getElementById('marketFilter').value;
-  const deal = document.getElementById('dealFilter').value;
-  const filtered = listings.filter(l=>{
-    const matchQ = !q || l.name.toLowerCase().includes(q)||l.type.toLowerCase().includes(q)||l.market.toLowerCase().includes(q)||l.sub.toLowerCase().includes(q);
-    const matchType = !type || l.type===type;
-    const matchMkt = !market || l.market.includes(market.replace(' FL',''));
-    const matchDeal = !deal || l.badge===deal;
-    return matchQ&&matchType&&matchMkt&&matchDeal;
+  // Mobile nav
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('mobileMenu').classList.toggle('open');
   });
-  renderListings(filtered);
-}
+  document.querySelectorAll('#mobileMenu a').forEach(function (a) {
+    a.addEventListener('click', function () { document.getElementById('mobileMenu').classList.remove('open'); });
+  });
 
-function setChip(el, type){
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('typeFilter').value = type;
-  filterListings();
-}
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-function openModal(id){
-  const l = listings.find(x=>x.id===id);
-  if(!l) return;
-  document.getElementById('mTag').textContent = l.type+' · '+l.sub+' · '+l.market+', FL';
-  document.getElementById('mTitle').textContent = l.name;
-  document.getElementById('mLoc').textContent = l.market+', Florida';
-  document.getElementById('mImg').className='modal-img '+l.img;
-  document.getElementById('mStats').innerHTML=`
-    <div class="modal-stat"><span class="modal-stat-val">${l.price}</span><span class="modal-stat-key">${l.badge==='For Lease'?'Asking Rate':'List Price'}</span></div>
-    <div class="modal-stat"><span class="modal-stat-val">${l.sf}</span><span class="modal-stat-key">Square Feet</span></div>
-    <div class="modal-stat"><span class="modal-stat-val">${l.cap}</span><span class="modal-stat-key">Cap Rate</span></div>
-    <div class="modal-stat"><span class="modal-stat-val">${l.noi}</span><span class="modal-stat-key">NOI</span></div>
-  `;
-  document.getElementById('mDesc').textContent = l.desc;
-  document.getElementById('mHighlights').innerHTML=`<h4>Key Highlights</h4><ul>${l.highlights.map(h=>`<li>${h}</li>`).join('')}</ul>`;
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
+  // Crexi search
+  function crexiSearch(e) {
+    e.preventDefault();
+    var q = document.getElementById('searchInput').value.trim();
+    var url = 'https://www.crexi.com/properties';
+    if (q) { url += '?' + new URLSearchParams({ q: q }).toString(); }
+    window.open(url, '_blank', 'noopener');
+    return false;
+  }
 
-function closeModal(e){
-  if(e.target===document.getElementById('modalOverlay')) closeModalDirect();
-}
-function closeModalDirect(){
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
+  // Prefill the requirements form intent from the Buy/Lease/Invest cards
+  function setIntent(val) {
+    var sel = document.getElementById('lf-intent');
+    if (sel) { for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].value === val || sel.options[i].text === val) { sel.selectedIndex = i; } } }
+  }
 
-function handleSubmit(){
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),4000);
-}
-
-// init
-renderListings(listings);
-
-// keyboard close modal
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape') closeModalDirect();
-});
+  // Lead form submit (EmailJS)
+  function submitLead(e) {
+    e.preventDefault();
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('formSuccess');
+    if (EMAILJS_READY && window.emailjs) {
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+        .then(function () { success.classList.add('show'); form.reset(); success.scrollIntoView({ behavior: 'smooth', block: 'center' }); })
+        .catch(function (err) { console.error('EmailJS error:', err); alert('Sorry — something went wrong. Please call (561) 598-8838.'); });
+    } else {
+      // Placeholder mode: EmailJS keys not yet configured.
+      console.warn('EmailJS not configured — set EMAILJS_PUBLIC_KEY / SERVICE_ID / TEMPLATE_ID to enable sending.');
+      success.classList.add('show');
+      form.reset();
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return false;
+  }
 </script>
 </body>
 </html>
