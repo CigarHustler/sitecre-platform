@@ -552,7 +552,9 @@
       }
     });
     // What remains is the location/city.
-    const keywords = text.replace(/\s+/g, ' ').trim();
+    let keywords = text.replace(/\s+/g, ' ').trim();
+    // If a location was entered without a state, scope it to Florida.
+    if (keywords && !/\b(fl|florida)\b/i.test(keywords)) { keywords += ', FL'; }
     let url = 'https://www.crexi.com/properties?stateIds[]=FL';
     types.forEach(function(ty){ url += '&propertyTypes[]=' + encodeURIComponent(ty); });
     if (keywords) { url += '&keywords=' + encodeURIComponent(keywords); }
