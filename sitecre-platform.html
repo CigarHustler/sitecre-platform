@@ -86,6 +86,8 @@
   .search-form{display:flex;flex-direction:column;gap:0.75rem;}
   .search-form input[type=text]{flex:1;padding:0.9rem 1rem;border:1.5px solid var(--line);border-radius:10px;font-size:1rem;font-family:'Inter';outline:none;}
   .search-form input[type=text]:focus{border-color:var(--blue);}
+  .search-form select{padding:0.9rem 1rem;border:1.5px solid var(--line);border-radius:10px;font-size:1rem;font-family:'Inter';outline:none;background:#fff;color:var(--ink);cursor:pointer;}
+  .search-form select:focus{border-color:var(--blue);}
   .search-note{font-size:0.8rem;color:var(--muted);margin-top:0.5rem;}
 
   /* Lead cards */
@@ -246,8 +248,20 @@
   <div class="wrap">
     <div class="search-card">
       <h3>Search Florida's institutional-grade commercial assets</h3>
-      <form class="search-form" id="searchForm" onsubmit="return crexiSearch(event)">
+      <form class="search-form" id="searchForm" onsubmit="doSearch(); return false;">
         <input type="text" id="searchInput" placeholder="City, asset type, or keyword (e.g. Tampa industrial)" />
+        <select id="typeFilter" aria-label="Property type">
+          <option value="">All Property Types</option>
+          <option value="Office">Office</option>
+          <option value="Retail">Retail</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Multifamily">Multifamily</option>
+          <option value="Land">Land</option>
+          <option value="Hospitality">Hospitality</option>
+          <option value="Mixed Use">Mixed Use</option>
+          <option value="Self Storage">Self Storage</option>
+          <option value="Special Purpose">Special Purpose</option>
+        </select>
         <button type="submit" class="btn btn-primary">Search on Crexi →</button>
       </form>
       <p class="search-note">Live listings powered by Crexi. Your search opens in a new tab.</p>
@@ -513,14 +527,14 @@
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   // Crexi search
-  function crexiSearch(e) {
-    e.preventDefault();
-    var q = document.getElementById('searchInput').value.trim();
-    var params = new URLSearchParams({ searchType: 'Sales' });
-    if (q) { params.set('searchText', q); }
-    var url = 'https://www.crexi.com/search?' + params.toString();
-    window.open(url, '_blank', 'noopener');
-    return false;
+  function doSearch(){
+    const q = document.getElementById('searchInput').value.trim();
+    const type = document.getElementById('typeFilter').value;
+    const url = 'https://www.crexi.com/properties?' + 
+      'stateIds[]=FL' +
+      (type ? '&propertyTypes[]=' + encodeURIComponent(type) : '') +
+      (q ? '&keywords=' + encodeURIComponent(q) : '');
+    window.open(url, '_blank');
   }
 
   // Prefill the requirements form intent from the Buy/Lease/Invest cards
