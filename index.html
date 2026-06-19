@@ -261,9 +261,9 @@
           <option value="Multifamily">Multifamily</option>
           <option value="Hospitality">Hospitality</option>
         </select>
-        <button type="submit" class="btn btn-primary">Search on Crexi →</button>
+        <button type="submit" class="btn btn-primary">Search Florida on Crexi →</button>
       </form>
-      <p class="search-note">Live listings powered by Crexi. Your search opens in a new tab.</p>
+      <p class="search-note">Search opens Crexi filtered to Florida — refine by city on their map.</p>
     </div>
   </div>
 </section>
@@ -527,21 +527,8 @@
 
   // Crexi search
   function doSearch(){
-    const q = document.getElementById('searchInput').value.trim();
-    const type = document.getElementById('typeFilter').value;
-    const typeMap = {
-      'Industrial':'Industrial','Office':'Office','Retail':'Retail',
-      'Medical':'Office','Land':'Land','Mixed-Use':'Mixed Use',
-      'Multifamily':'Multifamily','Hospitality':'Hospitality'
-    };
-    const crexiType = typeMap[type] || '';
-    let searchUrl = 'https://www.crexi.com/properties';
-    const params = [];
-    if(crexiType) params.push('propertyTypes[]=' + encodeURIComponent(crexiType));
-    params.push('stateIds[]=FL');
-    if(q) params.push('searchText=' + encodeURIComponent(q));
-    if(params.length) searchUrl += '?' + params.join('&');
-    window.open(searchUrl, '_blank');
+    // Always open Crexi scoped to Florida — users refine by city on Crexi's map.
+    window.open('https://www.crexi.com/properties?stateIds[]=FL', '_blank');
   }
 
   // Prefill the requirements form intent from the Buy/Lease/Invest cards
